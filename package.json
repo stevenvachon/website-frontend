@@ -1,0 +1,52 @@
+{
+  "private": true,
+  "name": "website-frontend",
+  "description": "My website's frontend.",
+  "version": "3.0.0-alpha",
+  "license": "UNLICENSED",
+  "author": "Steven Vachon <contact@svachon.com> (https://svachon.com)",
+  "repository": "github:stevenvachon/website-frontend",
+  "scripts": {
+    "build": "npm run build:clean:pre && eleventy && npm run build:clean:post && npm run build:size:css && npm run build:size:js",
+    "build:clean:post": "rimraf build/styles.css.map",
+    "build:clean:pre": "rimraf build",
+    "build:size:css": "gzip-size build/styles.css --include-original",
+    "build:size:js": "gzip-size build/scripts.js --include-original",
+    "dev": "npm run build:clean:pre && eleventy --serve",
+    "lint": "eslint",
+    "test": "npm run test:watch -- --run",
+    "test:watch": "vitest dev --coverage --coverage.include=src/scripts/**/*.mjs --coverage.reporter=html --coverage.reporter=lcov --coverage.reporter=text --environment=happy-dom"
+  },
+  "engines": {
+    "node": ">= 23"
+  },
+  "dependencies": {
+    "ua-parser-js": "^2.0.3",
+    "website-projectile-pixels": "github:stevenvachon/website-projectile-pixels#v1.0.0"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-rss": "^2.0.3",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "@eslint/js": "^9.24.0",
+    "@geoffdavis92/eleventy-plugin-webpack": "^2.1.1",
+    "@vitest/coverage-v8": "^3.1.1",
+    "cssnano": "^7.0.6",
+    "eleventy-plugin-dart-sass": "^1.0.3",
+    "eleventy-plugin-read-more": "^1.0.2",
+    "eleventy-plugin-youtube-embed": "^1.12.0",
+    "eslint": "^9.24.0",
+    "eslint-plugin-security": "^3.0.1",
+    "globals": "^16.0.0",
+    "gzip-size-cli": "^5.1.0",
+    "happy-dom": "^17.4.4",
+    "htmlnano": "^2.1.1",
+    "markdown-it-abbr": "github:stevenvachon/markdown-it-abbr",
+    "markdown-it-image-size": "^14.7.0",
+    "markdown-it-implicit-figures": "^0.12.0",
+    "markdown-it-link-attributes": "^4.0.1",
+    "minify-xml": "^4.5.2",
+    "rimraf": "^6.0.1",
+    "vitest": "^3.1.1"
+  }
+}

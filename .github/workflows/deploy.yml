@@ -1,0 +1,53 @@
+# More info: https://aws.amazon.com/blogs/security/use-iam-roles-to-connect-github-actions-to-actions-in-aws/
+name: Connect to an AWS role, build and deploy
+
+on:
+  push:
+    branches: [main]
+
+# Permission can be added at job level or workflow level
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read # This is required for actions/checkout
+
+jobs:
+  DeployToAWS:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::522663366794:role/GitHubAction-stevenvachon-website
+          role-session-name: GitHub_to_AWS_via_FederatedOIDC
+          aws-region: us-east-1
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 23
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+      - name: Setup SSH for private repository dependency
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.PROJECTILE_PIXELS_DEPLOY_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+      - name: Install dependencies
+        run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Tests
+        run: npm test
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: stevenvachon/website-frontend
+      - name: Production build
+        run: npm run build
+      - name: AWS CLI version
+        run: aws --version
+      - name: Sync S3 with build
+        run: aws s3 sync ./build s3://stevenvachon-frontend/ --delete
+      - name: Invalidate CloudFront cache
+        run: aws cloudfront create-invalidation --distribution-id E1THQ8IBSERWB2 --paths "/*"
