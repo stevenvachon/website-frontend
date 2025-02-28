@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    {% if ('blog-post' or 'blog-archives') in (tags or []) %}
+      <title>{{ title }} • Steven Vachon's Blog</title>
+    {% elseif 'homepage' not in (tags or []) %}
+      <title>{{ title }} • Steven Vachon</title>
+    {% else %}
+      <title>{{ title }}</title>
+    {% endif %}
+    {% if description %}
+      <meta name="description" content="{{ description }}">
+    {% endif %}
+    <meta name="generator" content="{{ eleventy.generator }}">
+    <meta name="robots" content="{{ ((robots or []) | join(',')) or 'follow,index' }}">
+    <meta name="version" content="{{ site.version }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if 'blog' in (tags or []) %}
+      <link rel="alternate" href="/blog/feed.xml" type="application/atom+xml">
+    {% endif %}
+    {% if date %}
+      <meta property="article:published_time" content="{{ date | dateISO }}">
+    {% endif %}
+    <link rel="author" href="/humans.txt" type="text/plain">
+    {% if 'error-page' not in (tags or []) %}
+      <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    {% endif %}
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+    <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+    <link rel="license" href="//creativecommons.org/licenses/by-nc-nd/4.0/deed.en">
+    <link rel="stylesheet" href="/styles.css" media="screen">
+    <script src="/scripts.js"></script>
+    {% if 'blog-post' in (tags or []) %}
+      <script>
+        const disqus_config = function() {
+          this.page.url = '{{ site.url }}{{ page.url }}';
+        };
+      </script>
+      <script async src="//svachon.disqus.com/embed.js"></script>
+    {% endif %}
+  </head>
+  <body>
+    <header class="sv header">
+      <div class="-header--nav-home">
+        <a aria-label="Go to homepage" href="/">
+          {% if 'homepage' in (tags or []) %}
+            <h1>Steven Vachon</h1>
+          {% else %}
+            Steven Vachon
+          {% endif %}
+        </a>
+      </div>
+      {% if 'error-page' not in (tags or []) %}
+        <nav aria-label="Website Navigation" class="-header--nav-main">
+          <ul>
+            <!-- <li
+              itemscope
+              itemtype="https://schema.org/SiteNavigationElement"
+            >
+              <a href="/approach/" itemprop="url"><span itemprop="name">Approach</span></a>
+            </li> -->
+            <li
+              {% if 'contact-page' in (tags or []) %} class="-header--nav-main-selected" {% endif %}
+              itemscope
+              itemtype="https://schema.org/SiteNavigationElement"
+            >
+              <a href="/contact/" itemprop="url"><span itemprop="name">Contact</span></a>
+            </li>
+            <li
+              {% if 'blog' in (tags or []) %} class="-header--nav-main-selected" {% endif %}
+              itemscope
+              itemtype="https://schema.org/SiteNavigationElement"
+            >
+              <a href="/blog/" itemprop="url"><span itemprop="name">Blog</span></a>
+            </li>
+          </ul>
+        </nav>
+        <nav aria-label="Social Networks" class="-header--nav-social">
+          <ul>
+            <li><a class="-header--nav-social-github" href="//github.com/stevenvachon" rel="external me noopener" target="_blank">GitHub</a></li>
+            <li><a class="-header--nav-social-x" href="//x.com/stevenvachon" rel="external me noopener" target="_blank">X/Twitter</a></li>
+            <!-- <li><a class="-header--nav-social-linkedin" href="//linkedin.com/in/stevenvachon" rel="external me noopener" target="_blank">LinkedIn</a></li> -->
+          </ul>
+        </nav>
+      {% endif %}
+    </header>
+    <hr>
+    {% if 'error-page' not in (tags or []) %}
+      <div class="sv pixels" role="presentation">
+        <projectile-pixels direction="{{ projectiles or 'rtl' }}"></projectile-pixels>
+      </div>
+    {% endif %}
+    {{ content | safe }}
+    <hr>
+    <footer class="sv footer">
+      <span class="-footer--legal">
+        &copy; <time>1999</time>&ndash;<time>{{ site.lastModified | dateYear }}</time><span class="sv hidden"> Steven Vachon</span>.
+        <a class="-footer--link" href="//creativecommons.org/licenses/by-nc-nd/4.0/deed.en" rel="external license noopener" target="_blank">Some rights reserved</a>.
+      </span>
+      <span class="-footer--technical">
+        Valid
+        <a
+          class="-footer--link"
+          href="//validator.w3.org/check?uri={{ site.url | encodeURIComponent }}{{ page.url | encodeURIComponent }}"
+          rel="external noopener"
+          target="_blank"
+        ><abbr>HTML</abbr></a>/<a
+          class="-footer--link"
+          href="//validator.schema.org/#url={{ site.url | encodeURIComponent }}{{ page.url | encodeURIComponent }}"
+          rel="external noopener"
+          target="_blank"
+        >data</a>.
+        More <a class="-footer--link" href="/blog/modern-way-to-build-a-website/">about this site</a>.
+      </span>
+    </footer>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@id": "{{ site.url }}",
+            "@type": "Person",
+            "name": "Steven Vachon",
+            "sameAs": [
+              "//github.com/stevenvachon",
+              "//linkedin.com/in/stevenvachon",
+              "//www.npmjs.com/~stevenvachon",
+              "//stackoverflow.com/users/923745/steven-vachon",
+              "//x.com/stevenvachon"
+            ]
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "copyrightHolder": {
+              "@id": "{{ site.url }}"
+            },
+            "copyrightYear": 1999,
+            "creator": {
+              "@id": "{{ site.url }}"
+            },
+            "license": "//creativecommons.org/licenses/by-nc-nd/4.0/deed.en",
+            "maintainer": {
+              "@id": "{{ site.url }}"
+            },
+            "name": "Steven Vachon",
+            "url": "{{ site.url }}"
+          }
+        ]
+      }
+    </script>
+  </body>
+</html>

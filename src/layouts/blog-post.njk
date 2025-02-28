@@ -1,0 +1,24 @@
+---
+layout: blog.njk
+---
+<article class="sv blog-post" itemscope itemtype="https://schema.org/BlogPosting">
+  <header>
+    <h1 class="-blog-post--title" itemprop="headline">{{ title }}</h1>
+    <time class="-blog-post--date" datetime="{{ date | dateISO }}" itemprop="datePublished">
+      {{ date | dateFull }}
+    </time>
+  </header>
+  <div class="-blog-post--content {% if 'numbered-headers' in (tags or []) %} with-numbered-headers {% endif %}" itemprop="articleBody">
+    {{ content | safe }}
+  </div>
+  <section class="-blog-post--comments">
+    <div id="disqus_thread">
+      <noscript>
+        Please enable JavaScript to view the 
+        <a class="sv link" href="//disqus.com/?ref_noscript" rel="external nofollow">
+          comments powered by Disqus
+        </a>.
+      </noscript>
+    </div>
+  </section>
+</article>

@@ -1,0 +1,60 @@
+@use 'variables';
+
+%footer {
+  align-items: center;
+  color: var(--dark-grey);
+  display: flex;
+  font-size: 0.65em;
+  height: 49px;
+  justify-content: center;
+  position: relative;
+  //width: calc(100vw / var(--zoom));
+  width: 100%; // above line caused a horizontal scrollbar in Chrome v134
+
+  &::before {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      var(--white-trans-subtler) 100%
+    );
+    content: '';
+    height: 100%;
+    left: 0;
+    mask: url(/images/footer.svg) repeat-x bottom / contain;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1; // appear beneath subsequent siblings
+  }
+
+  .-footer--legal,
+  .-footer--technical {
+    box-sizing: border-box;
+    max-width: calc(var(--max-site-width) / 2);
+    width: 50%;
+  }
+
+  .-footer--legal {
+    padding-left: var(--site-padding);
+  }
+
+  .-footer--link {
+    color: inherit;
+
+    &:not(:active, :focus, :hover) {
+      transition: color var(--link-duration-out);
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: var(--light-grey);
+      transition: color var(--link-duration-in);
+    }
+  }
+
+  .-footer--technical {
+    padding-right: var(--site-padding);
+    text-align: right;
+  }
+}

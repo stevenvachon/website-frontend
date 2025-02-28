@@ -1,0 +1,28 @@
+@use 'global';
+
+@use 'blog';
+@use 'blog-post';
+@use 'blog-posts';
+@use 'btn';
+@use 'contact';
+@use 'content';
+@use 'footer';
+@use 'header';
+@use 'input';
+@use 'link';
+@use 'main';
+@use 'pixels';
+@use 'util';
+
+.sv {
+  $names: 'blog', 'blog-post', 'blog-posts', 'btn', 'contact', 'content',
+    'footer', 'header', 'input', 'link', 'pixels', 'main';
+
+  @each $name in $names {
+    &.#{$name} {
+      @extend %#{$name};
+    }
+  }
+
+  @extend %util;
+}

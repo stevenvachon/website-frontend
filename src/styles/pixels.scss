@@ -1,0 +1,31 @@
+@use 'variables';
+
+%pixels {
+  align-self: flex-start;
+  overflow-x: clip;
+  position: relative;
+  //width: calc(100vw / var(--zoom));
+  width: 100%; // above line caused a horizontal scrollbar in Chrome v134
+
+  projectile-pixels {
+    height: 398px;
+    left: calc(
+      (50vw / var(--zoom)) - (
+        min(
+          100vw / var(--zoom),
+          var(--max-site-width)
+        )
+        / 2
+      )
+      + 330px
+    );
+    margin-top: calc(0 - var(--site-padding));
+    position: absolute;
+    width: 763px;
+    z-index: -1; // appear beneath subsequent siblings
+
+    /*&:not(:defined) {
+      display: block;
+    }*/
+  }
+}

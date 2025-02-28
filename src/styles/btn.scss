@@ -1,0 +1,73 @@
+@use 'variables';
+
+%btn {
+  backdrop-filter: blur(var(--backdrop-blur-size));
+  background-color: color-mix(in srgb, var(--black) 85%, transparent);
+  border: 1px solid var(--blue-glow-border-off);
+  border-radius: var(--btn-border-radius);
+  box-shadow: 0 0 var(--blue-glow-size) 0 var(--blue-glow-off);
+  color: var(--yellow);
+  cursor: pointer;
+  font-size: var(--btn-font-size);
+  font-style: inherit;
+  font-weight: bold;
+  letter-spacing: 0.025em;
+  padding: var(--btn-padding);
+  padding-right: var(--btn-padding-italic-space);
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  &.arrowed {
+    padding-right: var(--btn-padding);
+
+    &::after {
+      content: ' »' / '';
+    }
+
+    &:not(:active, :focus, :hover) {
+      &::after {
+        transition: var(--link-duration-out);
+      }
+    }
+
+    &:active,
+    &:focus,
+    &:hover {
+      &::after {
+        color: var(--white);
+        padding-left: 0.2em;
+        transition: var(--link-duration-in);
+      }
+    }
+  }
+
+  &:not(:active, :focus, :hover) {
+    transition: background-color var(--glow-duration-out),
+      border-color calc(var(--glow-duration-out) / 2),
+      box-shadow var(--glow-duration-out), color var(--link-duration-out),
+      text-shadow var(--glow-duration-out);
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: var(--darker-grey-trans);
+    border: 1px solid var(--blue-glow-border-on);
+    box-shadow: 0 0 var(--blue-glow-size) 0 var(--blue-glow-on);
+    color: color-mix(in srgb, var(--white) 10%, var(--yellow));
+    outline: none;
+    text-shadow: 0 0 1px color-mix(in srgb, var(--yellow) 50%, transparent),
+      0 0 2px color-mix(in srgb, var(--yellow) 50%, transparent),
+      0 0 4px color-mix(in srgb, var(--yellow) 50%, transparent),
+      0 0 10px color-mix(in srgb, var(--yellow) 25%, transparent);
+    transition: background-color var(--glow-duration-in),
+      border-color calc(var(--glow-duration-in) / 2),
+      box-shadow var(--glow-duration-in), color var(--link-duration-in),
+      text-shadow var(--glow-duration-in);
+  }
+
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+  }
+}

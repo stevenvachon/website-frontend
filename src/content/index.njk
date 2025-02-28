@@ -1,0 +1,86 @@
+---
+description: An expert of 20+ years in web-based software development.
+layout: main.njk
+tags: homepage
+title: "Steven Vachon: Frontend/Cloud Web Developer"
+---
+<style>
+  main {
+    box-sizing: border-box;
+    min-height: var(--projectile-pixels-height);
+    padding: calc(var(--site-padding) * 3) calc(var(--site-padding) * 2) 0 calc(var(--site-padding) * 2);
+  }
+
+  main h2 {
+    color: var(--white);
+    font-size: 2.05em;
+    font-weight: bold;
+    line-height: 1.2em;
+    max-width: 20em;
+    text-transform: lowercase;
+  }
+
+  main h2:first-letter {
+    text-transform: uppercase;
+  }
+
+  main h2 span {
+    color: var(--yellow);
+    display: block;
+  }
+
+  main h2 span::after {
+    content: ".";
+  }
+
+  main p {
+    line-height: 1.3em;
+    margin-top: 3.2em;
+    max-width: 45em;
+  }
+
+  main p strong {
+    font-weight: bold;
+    white-space: nowrap;
+  }
+
+  @container style(--is-at-least-tablet-size: false) {
+    main {
+      padding-top: var(--site-padding);
+      text-align: center;
+    }
+
+    main h2 span {
+      display: inline;
+    }
+  }
+</style>
+<main class="sv main" itemscope itemtype="https://schema.org/WebPage">
+  <article itemprop="mainContentOfPage">
+    <h2>
+      <strong itemprop="specialty">Web-based Software</strong> with
+      <span>Quality Under the Hood</span>
+    </h2>
+    <p>
+      I like working. Having specialized in creating
+      <strong itemprop="specialty">user interfaces</strong> for
+      <time datetime="1999">20+ years</time> and
+      <strong itemprop="specialty">cloud architecture</strong> for
+      <time datetime="2015">10+ years</time>,
+      I've mastered my ability to help build and maintain your success.
+    </p>
+    <p>
+      <span class="sv hidden">Check out</span>  
+      <a
+        class="sv arrowed btn"
+        href="//github.com/stevenvachon"
+        itemprop="significantLink"
+        rel="me external noopener"
+        target="_blank"
+      >
+        my open source projects
+      </a>
+      <span class="sv hidden">on GitHub.</span>
+    </p>
+  </article>
+</main>

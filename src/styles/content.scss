@@ -1,0 +1,247 @@
+@use 'link';
+@use 'variables';
+
+%content {
+  --vertical-margin: 1.7em;
+
+  a:not(.-blog-posts--item-read-more):any-link {
+    @extend %link;
+  }
+
+  abbr:not(a:any-link abbr) {
+    cursor: help;
+  }
+
+  blockquote {
+    margin: var(--vertical-margin) calc(var(--site-padding) * 2)
+      var(--vertical-margin) calc(var(--site-padding) * 2);
+    position: relative;
+
+    &::after,
+    &::before {
+      color: var(--dark-grey);
+      font-size: 0.5em;
+      position: absolute;
+      user-select: none;
+    }
+
+    &::after {
+      bottom: -0.35em;
+      content: '”' / '';
+      right: -0.4em;
+    }
+
+    &::before {
+      content: '“' / '';
+      left: -0.6em;
+      top: 0.2em;
+    }
+  }
+
+  code {
+    color: var(--lighter-grey);
+    font-family: Consolas, 'Lucida Console', Monaco, 'Courier New', monospace,
+      sans-serif;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  figure,
+  .eleventy-plugin-youtube-embed {
+    margin-bottom: var(--vertical-margin);
+  }
+
+  figure {
+    text-align: center;
+
+    * {
+      margin-bottom: var(--vertical-margin);
+    }
+
+    figcaption {
+      font-size: 0.8em;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    img {
+      display: inline-block;
+      max-width: attr(width px);
+    }
+  }
+
+  figure img,
+  .eleventy-plugin-youtube-embed {
+    background-color: var(--white-trans-subtle);
+    border: 1px solid var(--white-trans-subtle);
+    box-sizing: border-box;
+    height: auto;
+    padding: var(--btn-padding);
+    width: 100%;
+  }
+
+  .eleventy-plugin-youtube-embed {
+    iframe {
+      // These fix an issue with its `border` and its (generated) `position: absolute`
+      box-sizing: border-box;
+      padding: var(--btn-padding);
+    }
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--yellow);
+    font-variant: small-caps;
+    font-weight: bold;
+    margin-bottom: 0.7em;
+  }
+
+  h2 {
+    font-size: 1.3em;
+  }
+
+  h3 {
+    font-size: 1.1em;
+  }
+
+  ol,
+  ul {
+    margin: 0 calc(var(--site-padding) * 2) var(--vertical-margin)
+      calc(var(--site-padding) * 2);
+
+    li {
+      margin-bottom: 0.7em;
+    }
+  }
+
+  p {
+    margin-bottom: var(--vertical-margin);
+  }
+
+  pre {
+    background-color: var(--darker-grey);
+    border: 1px dashed var(--dark-grey);
+    border-radius: var(--border-radius);
+    font-size: 0.8em;
+    line-height: max(1em, calc(var(--content-line-height) * 0.85));
+    margin: var(--vertical-margin) 0 var(--vertical-margin) 0;
+    overflow: auto;
+    padding: 0.5em;
+    text-shadow: none;
+
+    &[class*='language-'] {
+      scrollbar-color: var(--dark-grey) transparent;
+
+      // @todo use @use when possible
+      @import 'prismjs/themes/prism-twilight';
+
+      * {
+        line-height: inherit !important; // override (third-party) syntax highlight styles
+      }
+    }
+  }
+
+  s {
+    text-decoration: line-through;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  table {
+    border-bottom: 1px solid var(--white-trans-subtle);
+    border-spacing: 0;
+    margin-bottom: var(--vertical-margin);
+    width: 100%;
+
+    td,
+    th {
+      border-top: 1px solid var(--white-trans-subtle);
+      color: var(--lighter-grey);
+      padding: 0.25em;
+      text-align: left;
+    }
+
+    th {
+      font-weight: bold;
+    }
+
+    > tbody th {
+      color: var(--white);
+      font-size: 0.8em;
+      text-transform: uppercase;
+    }
+
+    > thead th {
+      border-top: 0;
+      color: var(--white);
+      font-size: 0.8em;
+      text-transform: uppercase;
+    }
+  }
+
+  &.with-numbered-headers {
+    counter-reset: h2;
+
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      &::before {
+        color: var(--dark-yellow);
+        font-size: 0.8em;
+      }
+    }
+
+    h2 {
+      counter-reset: h3;
+
+      &::before {
+        content: counter(h2) '. ';
+        counter-increment: h2;
+      }
+    }
+
+    h3 {
+      counter-reset: h4;
+
+      &::before {
+        content: counter(h2) '.' counter(h3) ' ';
+        counter-increment: h3;
+      }
+    }
+
+    h4 {
+      counter-reset: h5;
+
+      &::before {
+        content: counter(h2) '.' counter(h3) '.' counter(h4) ' ';
+        counter-increment: h4;
+      }
+    }
+
+    h5 {
+      counter-reset: h6;
+
+      &::before {
+        content: counter(h2) '.' counter(h3) '.' counter(h4) '.' counter(h5) ' ';
+        counter-increment: h5;
+      }
+    }
+
+    h6 {
+      &::before {
+        content: counter(h2) '.' counter(h3) '.' counter(h4) '.' counter(h5)
+          '. ' counter(h6) ' ';
+        counter-increment: h6;
+      }
+    }
+  }
+}

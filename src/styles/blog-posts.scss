@@ -1,0 +1,54 @@
+@use 'variables';
+
+%blog-posts {
+  .-blog-posts--item {
+    a:any-link {
+      &.-blog-posts--item-read-more {
+        background-color: var(--white-trans-subtler);
+        border-radius: 0.5em;
+        color: var(--medium-grey);
+        font-size: 0.7em;
+        padding: 0.2em 0.3em;
+        text-transform: uppercase;
+        white-space: nowrap;
+
+        &::after {
+          content: ' »' / '';
+        }
+
+        &:not(:active, :focus, :hover) {
+          transition: var(--link-duration-out);
+        }
+
+        &:active,
+        &:focus,
+        &:hover {
+          color: #86a5d8;
+          transition: var(--link-duration-in);
+        }
+      }
+    }
+
+    &:not(:first-of-type) {
+      margin-top: 2.8em;
+    }
+
+    &:not(:last-of-type) {
+      border-bottom: 1px dashed var(--white-trans-subtle);
+      padding-bottom: 0.8em;
+    }
+  }
+
+  .-blog-posts--title {
+    border-bottom: 1px dashed var(--white-trans-subtle);
+    color: var(--medium-grey);
+    font-size: 0.8em;
+    margin: 1em 0 3em 0;
+    padding-bottom: 0.5em;
+    text-align: center;
+
+    strong {
+      font-weight: bold;
+    }
+  }
+}

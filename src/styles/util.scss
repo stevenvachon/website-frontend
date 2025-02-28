@@ -1,0 +1,16 @@
+// For individual extending
+%hidden {
+  left: calc(-150vw * var(--zoom));
+  position: absolute;
+}
+
+// For namespace extending
+%util {
+  &.hidden {
+    @extend %hidden;
+  }
+
+  /*&.text-bold {
+    font-weight: bold;
+  }*/
+}

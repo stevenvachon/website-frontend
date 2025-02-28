@@ -1,0 +1,124 @@
+@use 'variables';
+
+%input {
+  --input-border-color: color-mix(in srgb, var(--white) 25%, transparent);
+  --input-border-color-hover: color-mix(in srgb, var(--white) 50%, transparent);
+
+  input,
+  textarea {
+    background-color: var(--white-trans-subtle);
+    border: 1px solid var(--input-border-color);
+    border-radius: var(--btn-border-radius);
+    box-sizing: border-box;
+    color: color-mix(in srgb, var(--white) 75%, transparent);
+    display: block;
+    font-size: 1em;
+    font-style: normal;
+    margin: 0.3em 0 1.1em 0;
+    padding: 0.3em;
+    text-shadow: color-mix(in srgb, var(--black) 50%, transparent) 1px 1px 2px;
+    width: 100%;
+
+    &:focus {
+      border-color: color-mix(in srgb, var(--yellow) 90%, var(--white));
+      box-shadow: 0 0 var(--blue-glow-size) 0
+        color-mix(in srgb, var(--yellow) 45%, transparent);
+      color: var(--white);
+      outline: none;
+    }
+  }
+
+  label {
+    color: var(--light-grey);
+    font-size: 0.7em;
+    text-transform: uppercase;
+
+    &::after {
+      content: ':';
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    scrollbar-color: var(--input-border-color) transparent;
+
+    /*&::-webkit-resizer {
+      border: 1px solid var(--input-border-color);
+      border-bottom: 0;
+      border-radius: 1em;
+      border-right: 0;
+      cursor: ns-resize;
+    }*/
+
+    &:not(:focus):hover {
+      scrollbar-color: var(--input-border-color-hover) transparent;
+
+      /*&::-webkit-resizer {
+        border-color: var(--input-border-color-hover);
+      }*/
+    }
+
+    &:focus {
+      scrollbar-color: var(--yellow) transparent;
+
+      /*&::-webkit-resizer {
+        border-color: var(--yellow);
+      }*/
+    }
+  }
+
+  &:not(:has(input:focus, textarea:focus)) {
+    &:not(:hover) {
+      input,
+      textarea {
+        transition: background-color var(--glow-duration-out),
+          border-color var(--glow-duration-out),
+          box-shadow calc(var(--glow-duration-out) * 2),
+          color var(--link-duration-out),
+          scrollbar-color var(--glow-duration-out),
+          text-shadow var(--glow-duration-out);
+      }
+
+      label {
+        transition: color var(--link-duration-out),
+          text-shadow var(--glow-duration-out);
+      }
+    }
+
+    &:hover {
+      input,
+      textarea {
+        border-color: var(--input-border-color-hover);
+        box-shadow: 0 0 5px 0 color-mix(in srgb, var(--white) 20%, transparent);
+      }
+    }
+  }
+
+  &:has(input:focus, textarea:focus),
+  &:hover {
+    input,
+    textarea {
+      transition: background-color var(--glow-duration-in),
+        border-color var(--glow-duration-in),
+        box-shadow calc(var(--glow-duration-in) * 2),
+        color var(--link-duration-in), scrollbar-color var(--glow-duration-in),
+        text-shadow var(--glow-duration-in);
+    }
+
+    label {
+      color: var(--lighter-grey);
+      text-shadow: 0 0 3px color-mix(in srgb, var(--white) 80%, transparent);
+      transition: color var(--link-duration-in),
+        text-shadow var(--glow-duration-in);
+    }
+  }
+
+  &:has(input:disabled, textarea:disabled),
+  &.disabled {
+    input,
+    label,
+    textarea {
+      cursor: not-allowed;
+    }
+  }
+}

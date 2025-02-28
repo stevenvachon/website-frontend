@@ -1,0 +1,67 @@
+---
+layout: main.njk
+projectiles: ltr
+tags: blog
+---
+<div class="sv unpadded paned blog">
+  <main class="-blog--primary">
+    {{ content | safe }}
+  </main>
+  <hr>
+  <aside class="-blog--secondary">
+    <nav class="-blog--secondary-organizing">
+      <p class="-blog--secondary-organizing-title">
+        <span class="sv hidden">Blog </span>Categories<span class="sv hidden">:</span>
+      </p>
+      <ul class="-blog--secondary-organizing-categories">
+        {% for category in collections.categoryCounts %}
+          <li
+            {%
+              if
+                'blog-post' not in (tags or [])
+                and (category.tag === tag or (tag === undefined and category.tag === '_null'))
+            %}
+              class="-blog--secondary-organizing-categories-selected"
+            {% endif %}
+            itemscope
+            itemtype="https://schema.org/SiteNavigationElement"
+          >
+            <a href="{{ category.url }}" itemprop="url">
+              <span itemprop="name">{{ category.title }}</span>
+            </a>
+            ({{ category.count }})
+          </li>
+        {% endfor %}
+      </ul>
+      <ul class="-blog--secondary-organizing-archives">
+        <!-- <li><a href="/blog/archives">Archives</a></li> -->
+      </ul>
+    </nav>
+    <nav class="-blog--secondary-other">
+      <ul>
+        <li>
+          <a
+            class="-blog--secondary-other-rss"
+            href="/blog/feed.xml"
+            rel="alternate"
+            target="_blank"
+            title="Subscribe to Steven's Blog"
+          >
+            Subscribe
+          </a>
+        </li>
+        <li>
+          <a
+            class="-blog--secondary-other-x"
+            href="//x.com/stevenvachon"
+            rel="external me noopener"
+            target="_blank"
+            title="Follow Steven on X/Twitter"
+          >
+            Follow
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+</div>

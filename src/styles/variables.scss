@@ -1,0 +1,90 @@
+:root {
+  // Colours
+  --black: black;
+  --black-trans: color-mix(in srgb, var(--black) 70%, transparent);
+  --black-trans-subtle: color-mix(in srgb, var(--black) 25%, transparent);
+
+  --blue-glow-border-off: #305085;
+  --blue-glow-border-on: #305ba2;
+  --blue-glow-off: color-mix(in srgb, #0060ff 65%, transparent);
+  --blue-glow-on: color-mix(in srgb, #0060ff 85%, transparent);
+
+  --dark-grey: #3b3b3b;
+  --dark-grey-trans: color-mix(in srgb, var(--dark-grey) 85%, transparent);
+  --darker-grey: #191919;
+  --darker-grey-trans: color-mix(in srgb, var(--darker-grey) 85%, transparent);
+  --light-grey: #999999;
+  --light-grey-trans: color-mix(in srgb, var(--light-grey) 85%, transparent);
+  --lighter-grey: #cccccc;
+  --lighter-grey-trans: color-mix(
+    in srgb,
+    var(--lighter-grey) 85%,
+    transparent
+  );
+  --medium-grey: #6d6d6d;
+  --medium-grey-trans: color-mix(in srgb, var(--medium-grey) 85%, transparent);
+
+  --white: white;
+  --white-trans: color-mix(in srgb, var(--white) 25%, transparent);
+  --white-trans-subtle: color-mix(in srgb, var(--white) 10%, transparent);
+  --white-trans-subtler: color-mix(in srgb, var(--white) 5%, transparent);
+
+  --yellow: #c5a33d;
+  --dark-yellow: #63521f;
+
+  --projectileColor1: #452d20;
+  --projectileColor2: #748954;
+  --projectileColor3: #33411c;
+  --projectileColor4: #67778c;
+  --projectileColor5: #2a3f54;
+  --projectileColor6: #575939;
+  --projectileColor7: #544e27;
+  --projectileColor8: #9a9a9a;
+
+  // Fonts
+  --body-font: Helvetica, Arial, sans-serif;
+
+  // Transitions
+  --glow-duration-in: 0.2s;
+  --glow-duration-out: 1s;
+  --link-duration-in: 0.2s;
+  --link-duration-out: 0.5s;
+
+  // Sizes
+  --backdrop-blur-size: 2px;
+  --blue-glow-size: 7px;
+  --border-radius: 0.5em;
+  --btn-border-radius: 6px;
+  --btn-font-size: 0.8em;
+  --btn-padding: 7px;
+  --btn-padding-italic-space: calc(
+    var(--btn-padding) + 0.1em
+  ); // extra space for italic
+  --content-line-height: 1.7em;
+  --max-site-width: 990px;
+  --projectile-pixels-height: 398px;
+  --site-padding: 20px;
+  --white-glow-size: 3px;
+  --zoom: 1;
+
+  // Responsive
+  //--is-at-least-phone-size: true;
+  --is-at-least-tablet-size: false;
+  --is-at-least-desktop-size: false;
+  --is-at-least-tv-size: false;
+
+  @media (min-width: 768px) {
+    --is-at-least-tablet-size: true;
+  }
+
+  //@media (min-width: 992px) {}
+
+  @media (min-width: 1200px) {
+    --is-at-least-desktop-size: true;
+  }
+
+  @media (min-width: 1920px) {
+    --is-at-least-tv-size: true;
+    --zoom: 1.5;
+  }
+}

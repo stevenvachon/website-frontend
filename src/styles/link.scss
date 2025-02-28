@@ -1,0 +1,26 @@
+@use 'variables';
+
+%link {
+  --link-border-radius: 0.25em;
+
+  border-radius: var(--link-border-radius) var(--link-border-radius) 0 0;
+  color: var(--white);
+  font-weight: bold;
+  padding: 0 0.1em;
+  text-decoration: underline;
+  text-decoration-color: var(--yellow);
+
+  &:not(:active, :focus, :hover) {
+    transition: var(--link-duration-out);
+  }
+
+  &:active,
+  &:focus,
+  &:hover {
+    background-color: var(--white-trans-subtle);
+    border-radius: var(--link-border-radius);
+    color: var(--yellow);
+    text-decoration-color: transparent;
+    transition: var(--link-duration-in);
+  }
+}

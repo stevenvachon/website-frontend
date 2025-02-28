@@ -1,0 +1,47 @@
+@use 'variables';
+
+::selection {
+  background-color: var(--yellow);
+  color: var(--white);
+  text-shadow: none;
+}
+
+html {
+  color: var(--white);
+  font-family: var(--body-font);
+  //font-size: 16px;
+  font-style: italic;
+  text-shadow: var(--black) 1px 1px 2px;
+  -webkit-font-smoothing: antialiased;
+
+  * {
+    border: 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+    margin: 0;
+    outline-color: var(--blue-glow-border-on);
+    padding: 0;
+    text-decoration: inherit;
+  }
+}
+
+body {
+  align-items: center;
+  background: var(--black) url(/images/bg.webp) no-repeat calc(50% - 300px) top /
+    calc(1866px / 2); // size necessary for `zoom`
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh / var(--zoom));
+  zoom: var(--zoom);
+}
+
+hr {
+  display: none;
+}
+
+/*​#disqus_thread a {
+  color: var(--yellow);
+}*/

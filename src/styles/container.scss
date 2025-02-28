@@ -1,0 +1,57 @@
+@use 'variables';
+
+%container {
+  max-width: var(--max-site-width);
+  width: calc(100% - (var(--site-padding) * 2));
+
+  &.paned {
+    --pane-size: 850px;
+
+    //backdrop-filter: blur(var(--backdrop-blur-size));
+    border-radius: 10px;
+    overflow: clip;
+    position: relative;
+
+    &::after,
+    &::before {
+      content: '';
+      left: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: -1;
+    }
+
+    &::after {
+      filter: url(/images/grain.svg#noiseFilter) brightness(0.4) contrast(1.1);
+      height: calc(var(--pane-size) / 1.5);
+      mix-blend-mode: overlay;
+    }
+
+    &::before {
+      background-color: var(--black-trans);
+      background-image: radial-gradient(
+        circle closest-side,
+        color-mix(in srgb, var(--white) 12%, transparent),
+        transparent
+      );
+      background-position: calc(100% + calc(var(--pane-size) / 3))
+        calc(-1 * (var(--pane-size) / 3));
+      background-repeat: no-repeat;
+      background-size: var(--pane-size) var(--pane-size);
+      height: 100%;
+    }
+
+    &:not(.unpadded) {
+      box-sizing: border-box;
+      padding-left: var(--site-padding);
+      padding-right: var(--site-padding);
+      padding-top: calc(var(--site-padding) * 1.5);
+    }
+  }
+
+  @container style(--is-at-least-tablet-size: false) {
+    width: calc(100% - var(--site-padding));
+  }
+}

@@ -1,0 +1,184 @@
+@use 'main';
+@use 'variables';
+
+%blog {
+  @extend %main;
+  align-items: flex-start;
+  display: flex;
+
+  .-blog--primary {
+    box-sizing: border-box;
+    flex-grow: 1;
+    font-style: normal;
+    margin-top: 2em;
+    min-width: 0; // for articles with code blocks; https://medium.com/@hbarcelos/flexbox-gotchas-reloaded-ce92a18343d4
+    padding-left: var(--site-padding);
+
+    @container style(--is-at-least-tablet-size: false) {
+      padding-right: var(--site-padding);
+    }
+  }
+
+  .-blog--secondary {
+    border-left: 1px solid var(--white-trans-subtler);
+    box-sizing: border-box;
+    flex-basis: 15em;
+    flex-shrink: 0;
+    margin-top: var(--site-padding);
+
+    .-blog--secondary-organizing {
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        color-mix(in srgb, var(--black) 25%, transparent)
+      );
+      border-bottom: 1px solid var(--white-trans-subtler);
+      padding: 0 var(--site-padding) calc(var(--site-padding) / 2)
+        var(--site-padding);
+
+      .-blog--secondary-organizing-title {
+        margin-bottom: 2em;
+        text-transform: uppercase;
+      }
+
+      ul {
+        list-style: none;
+
+        &.-blog--secondary-organizing-archives {
+          margin-top: 1.15em;
+          text-align: center;
+
+          a:any-link {
+            color: var(--medium-grey);
+            font-size: 0.7em;
+            text-transform: uppercase;
+
+            &:not(:active, :focus, :hover) {
+              transition: var(--link-duration-out);
+            }
+
+            &:active,
+            &:focus,
+            &:hover {
+              color: var(--light-grey);
+              transition: var(--link-duration-in);
+            }
+          }
+        }
+
+        &.-blog--secondary-organizing-categories {
+          li {
+            color: var(--light-grey);
+            filter: drop-shadow(
+              1px 1px 2px var(--black)
+            ); // `text-shadow` is applied to transparent underlines
+            margin-top: 0.65em;
+            text-shadow: none;
+
+            a:any-link {
+              color: var(--white);
+              margin-left: 1em;
+              position: relative;
+              text-decoration: underline;
+
+              &::before {
+                background: radial-gradient(
+                  ellipse at center,
+                  #fedd7c,
+                  #ccaa44
+                );
+                background-position: 50% -100%;
+                background-size: 100% 200%;
+                border-radius: 50%;
+                box-sizing: border-box;
+                content: '';
+                height: 0.5em;
+                left: -1em;
+                margin: 0 0.5em 0.14em 0;
+                position: absolute;
+                top: 0.3em;
+                width: 0.5em;
+              }
+
+              &:not(:active, :focus, :hover) {
+                text-decoration-color: transparent;
+                transition: var(--link-duration-out);
+              }
+
+              &:active,
+              &:focus,
+              &:hover {
+                transition: var(--link-duration-in);
+              }
+            }
+
+            &.-blog--secondary-organizing-categories-selected {
+              a:any-link {
+                color: inherit;
+
+                &::before {
+                  content: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .-blog--secondary-other {
+      font-style: normal;
+      padding: var(--site-padding);
+      padding-top: calc(var(--site-padding) * 2);
+
+      ul {
+        list-style: none;
+
+        li {
+          a:any-link {
+            color: var(--light-grey);
+
+            &::before {
+              background-color: currentColor;
+              content: '';
+              display: inline-block;
+              height: 0.75em;
+              margin-right: 0.4em;
+              mask-position: center center;
+              mask-repeat: no-repeat;
+              mask-size: contain;
+              width: 0.75em;
+            }
+
+            &:not(:active, :focus, :hover) {
+              transition: var(--link-duration-out);
+            }
+
+            &:active,
+            &:focus,
+            &:hover {
+              color: var(--white);
+              transition: var(--link-duration-in);
+            }
+
+            &.-blog--secondary-other-rss::before {
+              mask-image: url(/images/rss.svg);
+            }
+
+            &.-blog--secondary-other-x::before {
+              mask-image: url(/images/x-twitter.svg);
+            }
+          }
+
+          &:not(:last-of-type) {
+            margin-bottom: 1.25em;
+          }
+        }
+      }
+    }
+
+    @container style(--is-at-least-tablet-size: false) {
+      display: none;
+    }
+  }
+}
