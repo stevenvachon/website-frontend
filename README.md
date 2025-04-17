@@ -72,6 +72,7 @@ Deployment will be performed automatically when pushing/merging to the "main" br
 
 ## To-do
 
+- Remove comments and TODOs.
 - Add a--simple math or honeypot--captcha to the contact form or switch to JS submission to prevent any abuse from bots.
 - Use GitHub Packages instead of private repository for `website-projectile-pixels`.
 - Switch from Nunjucks to JSX (or TSX) when it supports front matter.
@@ -82,8 +83,9 @@ Deployment will be performed automatically when pushing/merging to the "main" br
 - Try using `display: grid` instead of `flex` because it was blocking `container-type`.
 - Add `@container` query to remove blog sidebar when too narrow (primarily for user-set larger fonts).
 - Add `site.version` to _styles.css_ and _scripts.js_.
-- Remove comments and TODOs.
 - Try using ~~parcel~~ esbuild or Vite instead of webpack.
+- Try [element-ready](https://npmjs.com/element-ready) again when possible: https://github.com/sindresorhus/element-ready/issues/52.
+- Clean up text effects suffering from https://github.com/mattboldt/typed.js/issues/624.
 - Add HTML and [sitemap] XML validator to build--`npm run validate:html`, `npm run validate:sitemap`, `npm test` (runs both).
 - Inline code demos with some widget.
 - Fix [`<figcaption>` issue](https://github.com/arve0/markdown-it-implicit-figures/issues/56).
