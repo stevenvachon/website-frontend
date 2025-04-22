@@ -2,7 +2,7 @@
   "private": true,
   "name": "website-frontend",
   "description": "My website's frontend.",
-  "version": "3.0.0-alpha",
+  "version": "3.0.2",
   "license": "UNLICENSED",
   "author": "Steven Vachon <contact@svachon.com> (https://svachon.com)",
   "repository": "github:stevenvachon/website-frontend",

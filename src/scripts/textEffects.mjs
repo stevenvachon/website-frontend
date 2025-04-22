@@ -6,6 +6,7 @@ import {
 } from './util/index.mjs';
 import splitting from 'splitting';
 import Typed from 'typed.js';
+import { UAParser } from 'ua-parser-js';
 
 export const FADE_EFFECT = 'fade';
 export const PIXELATE_FADE_EFFECT = 'pixelate-fade';
@@ -51,10 +52,11 @@ const pixelateFadeEffect = async ({
   stagger,
   target,
 }) => {
+  const ns = 'http://www.w3.org/2000/svg';
   const createFilter = (index) =>
     Array.from(
       document.createRange().createContextualFragment(
-        `<svg xmlns="http://www.w3.org/2000/svg">${[
+        `<svg xmlns="${ns}">${[
           `<filter id="pixelateFilter${index}">`,
           '<feFlood x="4" y="4" height="1" width="1" />',
           `<feComposite id="composite${index}" />`,
@@ -72,10 +74,7 @@ const pixelateFadeEffect = async ({
       ).firstElementChild.children
     );
 
-  const pixelateFilters = document.createElementNS(
-    'http://www.w3.org/2000/svg',
-    'svg'
-  );
+  const pixelateFilters = document.createElementNS(ns, 'svg');
   pixelateFilters.inert = true; // Doesn't seem to work
   pixelateFilters.style.pointerEvents = 'none';
   pixelateFilters.style.position = 'absolute';
@@ -121,8 +120,8 @@ export default () =>
       stagger: target.dataset.textEffectStagger,
     };
 
-    const { by = SPLIT_BY_CHARS, effect } = originalOptions;
-    let { delay = 0, duration = 0.5, stagger = 0.1 } = originalOptions;
+    const { by = SPLIT_BY_CHARS } = originalOptions;
+    let { delay = 0, duration = 0.5, effect, stagger = 0.1 } = originalOptions;
 
     if (
       stringError(
@@ -136,6 +135,17 @@ export default () =>
       numberError(stagger, TEXT_EFFECT_STAGGER_ATTR)
     ) {
       return;
+    }
+
+    if (effect === PIXELATE_FADE_EFFECT) {
+      const {
+        browser: { name: browserName },
+        os: { name: osName },
+      } = UAParser(navigator.userAgent);
+      // All iOS web browsers use Safari's rendering engine, and it doesn't support the pixelate filter
+      if (browserName === 'Safari' || osName === 'iOS') {
+        effect = FADE_EFFECT;
+      }
     }
 
     delay = parseFloat(delay);
