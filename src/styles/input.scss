@@ -12,11 +12,13 @@
     box-sizing: border-box;
     color: color-mix(in srgb, var(--white) 75%, transparent);
     display: block;
-    font-size: 1em;
+    font-size: 1rem;
     font-style: normal;
-    margin: 0.3em 0 1.1em 0;
-    padding: 0.3em;
-    text-shadow: color-mix(in srgb, var(--black) 50%, transparent) 1px 1px 2px;
+    margin: 0.3rem 0 1.1rem 0;
+    padding: 0.3rem;
+    text-shadow: color-mix(in srgb, var(--black) 50%, transparent)
+      var(--text-shadow-offset) var(--text-shadow-offset)
+      var(--text-shadow-blur);
     width: 100%;
 
     &:focus {
@@ -30,7 +32,7 @@
 
   label {
     color: var(--light-grey);
-    font-size: 0.7em;
+    font-size: 0.7rem;
     text-transform: uppercase;
 
     &::after {
@@ -45,7 +47,7 @@
     /*&::-webkit-resizer {
       border: 1px solid var(--input-border-color);
       border-bottom: 0;
-      border-radius: 1em;
+      border-radius: 1rem;
       border-right: 0;
       cursor: ns-resize;
     }*/
@@ -89,7 +91,8 @@
       input,
       textarea {
         border-color: var(--input-border-color-hover);
-        box-shadow: 0 0 5px 0 color-mix(in srgb, var(--white) 20%, transparent);
+        box-shadow: 0 0 0.3125rem 0
+          color-mix(in srgb, var(--white) 20%, transparent);
       }
     }
   }
@@ -107,7 +110,8 @@
 
     label {
       color: var(--lighter-grey);
-      text-shadow: 0 0 3px color-mix(in srgb, var(--white) 80%, transparent);
+      text-shadow: 0 0 0.24375em
+        color-mix(in srgb, var(--white) 80%, transparent); // Relative size
       transition: color var(--link-duration-in),
         text-shadow var(--glow-duration-in);
     }

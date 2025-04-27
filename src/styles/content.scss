@@ -2,7 +2,7 @@
 @use 'variables';
 
 %content {
-  --vertical-margin: 1.7em;
+  --vertical-margin: 1.7rem;
 
   a:not(.-blog-posts--item-read-more):any-link {
     @extend %link;
@@ -15,26 +15,27 @@
   blockquote {
     margin: var(--vertical-margin) calc(var(--site-padding) * 2)
       var(--vertical-margin) calc(var(--site-padding) * 2);
-    position: relative;
+    position: relative; // For pseudo-elements
 
     &::after,
     &::before {
       color: var(--dark-grey);
-      font-size: 0.5em;
+      font-size: 5rem;
+      line-height: 1;
       position: absolute;
       user-select: none;
     }
 
     &::after {
-      bottom: -0.35em;
+      bottom: -0.7em; // Relative size
       content: '”' / '';
-      right: -0.4em;
+      right: -0.4em; // Relative size
     }
 
     &::before {
       content: '“' / '';
-      left: -0.6em;
-      top: 0.2em;
+      left: -0.5em; // Relative size
+      top: -0.2em; // Relative size
     }
   }
 
@@ -61,7 +62,7 @@
     }
 
     figcaption {
-      font-size: 0.8em;
+      font-size: 0.8rem;
       font-weight: bold;
       text-align: center;
     }
@@ -98,15 +99,15 @@
     color: var(--yellow);
     font-variant: small-caps;
     font-weight: bold;
-    margin-bottom: 0.7em;
+    margin-bottom: 0.7rem;
   }
 
   h2 {
-    font-size: 1.3em;
+    font-size: 1.3rem;
   }
 
   h3 {
-    font-size: 1.1em;
+    font-size: 1.1rem;
   }
 
   ol,
@@ -115,7 +116,7 @@
       calc(var(--site-padding) * 2);
 
     li {
-      margin-bottom: 0.7em;
+      margin-bottom: 0.7rem;
     }
   }
 
@@ -127,11 +128,11 @@
     background-color: var(--darker-grey);
     border: 1px dashed var(--dark-grey);
     border-radius: var(--border-radius);
-    font-size: 0.8em;
-    line-height: max(1em, calc(var(--content-line-height) * 0.85));
+    font-size: 0.8rem;
+    line-height: max(1, calc(var(--content-line-height) * 0.85));
     margin: var(--vertical-margin) 0 var(--vertical-margin) 0;
     overflow: auto;
-    padding: 0.5em;
+    padding: 0.4rem;
     text-shadow: none;
 
     &[class*='language-'] {
@@ -141,7 +142,7 @@
       @import 'prismjs/themes/prism-twilight';
 
       * {
-        line-height: inherit !important; // override (third-party) syntax highlight styles
+        line-height: inherit !important; // Override (third-party) syntax highlight styles
       }
     }
   }
@@ -164,7 +165,7 @@
     th {
       border-top: 1px solid var(--white-trans-subtle);
       color: var(--lighter-grey);
-      padding: 0.25em;
+      padding: 0.25rem;
       text-align: left;
     }
 
@@ -174,14 +175,14 @@
 
     > tbody th {
       color: var(--white);
-      font-size: 0.8em;
+      font-size: 0.8rem;
       text-transform: uppercase;
     }
 
     > thead th {
       border-top: 0;
       color: var(--white);
-      font-size: 0.8em;
+      font-size: 0.8rem;
       text-transform: uppercase;
     }
   }
@@ -196,7 +197,7 @@
     h6 {
       &::before {
         color: var(--dark-yellow);
-        font-size: 0.8em;
+        font-size: 0.8em; // Relative size
       }
     }
 

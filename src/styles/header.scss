@@ -13,30 +13,22 @@
     flex-grow: 1;
 
     a:any-link {
-      --logo-height: 0.8em;
-
-      background: var(--white) url(/images/logo.webp) no-repeat center bottom;
-      background-clip: text;
-      background-size: cover;
       color: transparent;
-      display: inline-block; // for `background-size`
-      font-family: 'Arial Black', 'Arial Bold', Gadget, sans-serif;
-      font-size: 1.3em;
-      font-weight: bolder; // for when 'Arial Black' is not available
-      height: var(--logo-height); // for `background-size`
-      line-height: calc(var(--logo-height) - 0.05em); // for `background-size`
-      padding-right: 0.25em; // background won't cover the italic otherwise
-      position: relative;
+      display: block;
+      height: 1.05rem;
+      position: relative; // For pseudo-elements
       text-shadow: none;
-      text-transform: uppercase;
+      user-select: none;
+      width: 12.5rem;
 
       &::after {
         color: var(--medium-grey);
         content: 'Home' / '';
         font-family: var(--body-font);
-        font-size: 0.5em;
+        font-size: 0.65rem;
         font-weight: normal;
-        left: calc(100% + 0.5em);
+        left: 100%;
+        padding-left: 0.5rem; // Clickable space
         position: absolute;
         text-indent: 0;
         text-transform: uppercase;
@@ -44,13 +36,15 @@
         white-space: nowrap;
       }
 
-      // Prefetch image
       &::before {
-        background: url(/images/logo-hover.webp);
+        background: var(--white) url(/images/logo-bg.webp) no-repeat center
+          bottom / cover;
         content: '';
-        height: 0;
+        display: block;
+        height: 100%;
+        mask: url(/images/logo.svg) no-repeat center center / contain;
         position: absolute;
-        width: 0;
+        width: 100%;
       }
 
       &:not(:active, :focus, :hover) {
@@ -60,25 +54,35 @@
             visibility 0s linear var(--link-duration-out);
           visibility: hidden;
         }
+
+        &::before {
+          filter: brightness(200%) saturate(0%);
+          transition: filter calc(var(--link-duration-out) * 2),
+            opacity var(--link-duration-out);
+        }
       }
 
       &:active,
       &:focus,
       &:hover {
-        background-image: url(/images/logo-hover.webp);
-
         &::after {
           opacity: 1;
           transition: opacity var(--link-duration-in), visibility 0s;
           visibility: visible;
+        }
+
+        &::before {
+          filter: brightness(100%) saturate(100%);
+          transition: filter calc(var(--link-duration-in) * 2),
+            opacity var(--link-duration-in);
         }
       }
     }
   }
 
   .-header--nav-main {
-    order: 1; // display last
-    position: relative;
+    order: 1; // Display last
+    position: relative; // For pseudo-element
 
     &::before {
       background-image: linear-gradient(
@@ -105,12 +109,13 @@
       border-top-right-radius: 0;
       border: 1px dashed var(--white-trans-subtle);
       border-top: 0;
-      box-shadow: var(--black) 1px 1px 2px;
+      box-shadow: var(--black) var(--text-shadow-offset)
+        var(--text-shadow-offset) var(--text-shadow-blur);
       interpolate-size: allow-keywords;
       overflow-y: clip;
       position: absolute;
       right: 0;
-      z-index: 2; // to appear over rest of site
+      z-index: 2; // To appear over rest of site
 
       li {
         display: block;
@@ -174,7 +179,7 @@
 
       ul {
         filter: blur(0px) saturate(1);
-        // elastic easing
+        // Elastic easing
         transition: filter 0.3s, height 0.3s cubic-bezier(0.5, 1.8, 0.3, 0.8),
           opacity 0.3s;
 
@@ -214,6 +219,7 @@
           mask-size: contain;
           overflow: clip;
           text-indent: 100%;
+          text-shadow: none; // Performance optimization
           width: var(--icon-width);
 
           &.-header--nav-social-github {
@@ -237,7 +243,7 @@
         }
 
         /*&:not(:active, :focus, :hover) {
-          filter: drop-shadow(0 0 var(--white-glow-size) transparent);
+          filter: drop-shadow(0 0 var(--icon-glow-size) transparent);
           transition: filter var(--glow-duration-out);
         }*/
 
@@ -245,7 +251,7 @@
         &:focus,
         &:hover {
           filter: drop-shadow(
-            0 0 var(--white-glow-size)
+            0 0 var(--icon-glow-size)
               color-mix(in srgb, var(--white) 25%, transparent)
           );
           //transition: filter var(--glow-duration-in);

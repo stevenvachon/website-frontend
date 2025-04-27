@@ -52,19 +52,23 @@
 
   // Sizes
   --backdrop-blur-size: 2px;
-  --blue-glow-size: 7px;
-  --border-radius: 0.5em;
+  --blue-glow-size: 0.4375rem;
+  --border-radius: 0.5em; // Relative size
   --btn-border-radius: 6px;
-  --btn-font-size: 0.8em;
+  --btn-font-size: 0.8rem;
   --btn-padding: 7px;
   --btn-padding-italic-space: calc(
     var(--btn-padding) + 0.1em
-  ); // extra space for italic
-  --content-line-height: 1.7em;
+  ); // Extra space for italic -- relative size
+  --content-line-height: 1.7;
+  --icon-glow-size: 0.1875rem;
   --max-site-width: 990px;
+  --overlay-shadow-blur: 1rem;
+  --overlay-shadow-offset: 0.3125rem;
   --projectile-pixels-height: 398px;
   --site-padding: 20px;
-  --white-glow-size: 3px;
+  --text-shadow-blur: 0.125em; // Relative size
+  --text-shadow-offset: calc(var(--text-shadow-blur) / 2);
   --zoom: 1;
 
   // Responsive

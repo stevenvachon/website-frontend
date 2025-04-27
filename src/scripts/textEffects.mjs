@@ -53,23 +53,25 @@ const pixelateFadeEffect = async ({
   target,
 }) => {
   const ns = 'http://www.w3.org/2000/svg';
+  // Avoid conflicts with other effects (ultimately sharing the same char indexes)
+  const uuid = crypto.randomUUID();
   const createFilter = (index) =>
     Array.from(
       document.createRange().createContextualFragment(
         `<svg xmlns="${ns}">${[
-          `<filter id="pixelateFilter${index}">`,
+          `<filter id="pixelateFilter-${uuid}-${index}">`,
           '<feFlood x="4" y="4" height="1" width="1" />',
-          `<feComposite id="composite${index}" />`,
+          `<feComposite id="composite-${uuid}-${index}" />`,
           '<feTile result="a" />',
           '<feComposite in="SourceGraphic" in2="a" operator="in" />',
-          `<feMorphology id="morphology${index}" operator="dilate" />`,
+          `<feMorphology id="morphology-${uuid}-${index}" operator="dilate" />`,
           '</filter>',
           // prettier-ignore
-          `<animate href="#composite${index}" attributeName="width" from="15" to="1" begin="${delay + stagger * index}s" dur="${duration}s" fill="freeze" />`,
+          `<animate href="#composite-${uuid}-${index}" attributeName="width" from="15" to="1" begin="${delay + stagger * index}s" dur="${duration}s" fill="freeze" />`,
           // prettier-ignore
-          `<animate href="#composite${index}" attributeName="height" from="15" to="1" begin="${delay + stagger * index}s" dur="${duration}s" fill="freeze" />`,
+          `<animate href="#composite-${uuid}-${index}" attributeName="height" from="15" to="1" begin="${delay + stagger * index}s" dur="${duration}s" fill="freeze" />`,
           // prettier-ignore
-          `<animate href="#morphology${index}" attributeName="radius" from="7" to="0" begin="${delay + stagger * index}s" dur="${duration}s" fill="freeze" />`,
+          `<animate href="#morphology-${uuid}-${index}" attributeName="radius" from="7" to="0" begin="${delay + stagger * index}s" dur="${duration}s" fill="freeze" />`,
         ].join('')}</svg>`
       ).firstElementChild.children
     );
@@ -82,7 +84,7 @@ const pixelateFadeEffect = async ({
   target.append(pixelateFilters);
 
   segments.forEach((segment, i) => {
-    segment.style.filter = `url(#pixelateFilter${i})`;
+    segment.style.filter = `url(#pixelateFilter-${uuid}-${i})`;
   });
 
   await fadeEffect({ delay, duration, segments, stagger });

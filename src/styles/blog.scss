@@ -10,8 +10,8 @@
     box-sizing: border-box;
     flex-grow: 1;
     font-style: normal;
-    margin-top: 2em;
-    min-width: 0; // for articles with code blocks; https://medium.com/@hbarcelos/flexbox-gotchas-reloaded-ce92a18343d4
+    margin-top: 2rem;
+    min-width: 0; // For articles with code blocks; https://medium.com/@hbarcelos/flexbox-gotchas-reloaded-ce92a18343d4
     padding-left: var(--site-padding);
 
     @container style(--is-at-least-tablet-size: false) {
@@ -22,7 +22,7 @@
   .-blog--secondary {
     border-left: 1px solid var(--white-trans-subtler);
     box-sizing: border-box;
-    flex-basis: 15em;
+    flex-basis: 15rem;
     flex-shrink: 0;
     margin-top: var(--site-padding);
 
@@ -37,7 +37,7 @@
         var(--site-padding);
 
       .-blog--secondary-organizing-title {
-        margin-bottom: 2em;
+        margin-bottom: 2rem;
         text-transform: uppercase;
       }
 
@@ -45,12 +45,12 @@
         list-style: none;
 
         &.-blog--secondary-organizing-archives {
-          margin-top: 1.15em;
+          margin-top: 1.15rem;
           text-align: center;
 
           a:any-link {
             color: var(--medium-grey);
-            font-size: 0.7em;
+            font-size: 0.7rem;
             text-transform: uppercase;
 
             &:not(:active, :focus, :hover) {
@@ -70,15 +70,16 @@
           li {
             color: var(--light-grey);
             filter: drop-shadow(
-              1px 1px 2px var(--black)
+              var(--text-shadow-offset) var(--text-shadow-offset)
+                var(--text-shadow-blur) var(--black)
             ); // `text-shadow` is applied to transparent underlines
-            margin-top: 0.65em;
+            margin-top: 0.65rem;
             text-shadow: none;
 
             a:any-link {
               color: var(--white);
-              margin-left: 1em;
-              position: relative;
+              margin-left: 1rem;
+              position: relative; // For pseudo-element
               text-decoration: underline;
 
               &::before {
@@ -92,12 +93,12 @@
                 border-radius: 50%;
                 box-sizing: border-box;
                 content: '';
-                height: 0.5em;
-                left: -1em;
-                margin: 0 0.5em 0.14em 0;
+                height: 0.5rem;
+                left: -1rem;
+                margin: 0 0.5rem 0.14rem 0;
                 position: absolute;
-                top: 0.3em;
-                width: 0.5em;
+                top: 0.3rem;
+                width: 0.5rem;
               }
 
               &:not(:active, :focus, :hover) {
@@ -142,12 +143,12 @@
               background-color: currentColor;
               content: '';
               display: inline-block;
-              height: 0.75em;
-              margin-right: 0.4em;
+              height: 0.75rem;
+              margin-right: 0.4rem;
               mask-position: center center;
               mask-repeat: no-repeat;
               mask-size: contain;
-              width: 0.75em;
+              width: 0.75rem;
             }
 
             &:not(:active, :focus, :hover) {
@@ -171,7 +172,7 @@
           }
 
           &:not(:last-of-type) {
-            margin-bottom: 1.25em;
+            margin-bottom: 1.25rem;
           }
         }
       }

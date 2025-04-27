@@ -5,10 +5,10 @@
     a:any-link {
       &.-blog-posts--item-read-more {
         background-color: var(--white-trans-subtler);
-        border-radius: 0.5em;
+        border-radius: 0.35rem;
         color: var(--medium-grey);
-        font-size: 0.7em;
-        padding: 0.2em 0.3em;
+        font-size: 0.7rem;
+        padding: 0.14rem 0.21rem;
         text-transform: uppercase;
         white-space: nowrap;
 
@@ -30,21 +30,21 @@
     }
 
     &:not(:first-of-type) {
-      margin-top: 2.8em;
+      margin-top: 2.8rem;
     }
 
     &:not(:last-of-type) {
       border-bottom: 1px dashed var(--white-trans-subtle);
-      padding-bottom: 0.8em;
+      padding-bottom: 0.8rem;
     }
   }
 
   .-blog-posts--title {
     border-bottom: 1px dashed var(--white-trans-subtle);
     color: var(--medium-grey);
-    font-size: 0.8em;
-    margin: 1em 0 3em 0;
-    padding-bottom: 0.5em;
+    font-size: 0.8rem;
+    margin: 0.8rem 0 2.4rem 0;
+    padding-bottom: 0.4rem;
     text-align: center;
 
     strong {

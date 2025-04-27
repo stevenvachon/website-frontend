@@ -11,7 +11,7 @@
   font-size: var(--btn-font-size);
   font-style: inherit;
   font-weight: bold;
-  letter-spacing: 0.025em;
+  letter-spacing: 0.025em; // Relative size
   padding: var(--btn-padding);
   padding-right: var(--btn-padding-italic-space);
   text-transform: uppercase;
@@ -35,7 +35,7 @@
     &:hover {
       &::after {
         color: var(--white);
-        padding-left: 0.2em;
+        padding-left: 0.2em; // Relative size
         transition: var(--link-duration-in);
       }
     }
@@ -56,10 +56,10 @@
     box-shadow: 0 0 var(--blue-glow-size) 0 var(--blue-glow-on);
     color: color-mix(in srgb, var(--white) 10%, var(--yellow));
     outline: none;
-    text-shadow: 0 0 1px color-mix(in srgb, var(--yellow) 50%, transparent),
-      0 0 2px color-mix(in srgb, var(--yellow) 50%, transparent),
-      0 0 4px color-mix(in srgb, var(--yellow) 50%, transparent),
-      0 0 10px color-mix(in srgb, var(--yellow) 25%, transparent);
+    text-shadow: 0 0 0.08em color-mix(in srgb, var(--yellow) 50%, transparent),
+      0 0 0.16em color-mix(in srgb, var(--yellow) 50%, transparent),
+      0 0 0.32em color-mix(in srgb, var(--yellow) 50%, transparent),
+      0 0 0.8em color-mix(in srgb, var(--yellow) 25%, transparent); // Relative size
     transition: background-color var(--glow-duration-in),
       border-color calc(var(--glow-duration-in) / 2),
       box-shadow var(--glow-duration-in), color var(--link-duration-in),

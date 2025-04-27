@@ -2,7 +2,7 @@
 @use 'variables';
 
 %blog-post {
-  --margin-top: 1.7em;
+  --margin-top: 1.7rem;
 
   .-blog-post--comments {
     margin-top: calc(var(--margin-top) * 2);
@@ -17,13 +17,13 @@
 
   .-blog-post--date {
     color: var(--medium-grey);
-    font-size: 0.7em;
+    font-size: 0.7rem;
     text-transform: uppercase;
   }
 
   .-blog-post--title {
     color: var(--yellow);
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: bold;
     font-variant: small-caps;
 

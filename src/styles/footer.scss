@@ -4,12 +4,12 @@
   align-items: center;
   color: var(--dark-grey);
   display: flex;
-  font-size: 0.65em;
-  height: 49px;
+  font-size: 0.65rem;
+  height: 3rem;
   justify-content: center;
-  position: relative;
+  position: relative; // For pseudo-element
   //width: calc(100vw / var(--zoom));
-  width: 100%; // above line caused a horizontal scrollbar in Chrome v134
+  width: 100%; // Above line caused a horizontal scrollbar in Chrome v134
 
   &::before {
     background-image: linear-gradient(
@@ -18,13 +18,10 @@
       var(--white-trans-subtler) 100%
     );
     content: '';
-    height: 100%;
-    left: 0;
+    inset: 0;
     mask: url(/images/footer.svg) repeat-x bottom / contain;
     position: absolute;
-    top: 0;
-    width: 100%;
-    z-index: -1; // appear beneath subsequent siblings
+    z-index: -1; // Appear beneath subsequent siblings
   }
 
   .-footer--legal,
