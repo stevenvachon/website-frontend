@@ -8,9 +8,10 @@
   box-shadow: 0 0 var(--blue-glow-size) 0 var(--blue-glow-off);
   color: var(--yellow);
   cursor: pointer;
+  font-family: var(--alternative-font);
   font-size: var(--btn-font-size);
   font-style: inherit;
-  font-weight: bold;
+  font-weight: 800;
   letter-spacing: 0.025em; // Relative size
   padding: var(--btn-padding);
   padding-right: var(--btn-padding-italic-space);

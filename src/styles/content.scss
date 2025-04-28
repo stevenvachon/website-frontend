@@ -97,9 +97,11 @@
   h5,
   h6 {
     color: var(--yellow);
-    font-variant: small-caps;
-    font-weight: bold;
+    font-family: var(--alternative-font);
+    font-style: italic;
+    font-weight: 800;
     margin-bottom: 0.7rem;
+    text-transform: uppercase;
   }
 
   h2 {

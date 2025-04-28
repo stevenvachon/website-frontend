@@ -24,7 +24,6 @@
       &::after {
         color: var(--medium-grey);
         content: 'Home' / '';
-        font-family: var(--body-font);
         font-size: 0.65rem;
         font-weight: normal;
         left: 100%;
@@ -81,8 +80,10 @@
   }
 
   .-header--nav-main {
+    font-family: var(--alternative-font);
     order: 1; // Display last
     position: relative; // For pseudo-element
+    text-transform: uppercase;
 
     &::before {
       background-image: linear-gradient(
@@ -99,7 +100,6 @@
       padding: var(--btn-padding);
       padding-right: var(--btn-padding-italic-space);
       text-shadow: none;
-      text-transform: uppercase;
     }
 
     ul {
@@ -125,8 +125,7 @@
 
         a:any-link {
           color: var(--yellow);
-          font-weight: bold;
-          text-transform: uppercase;
+          font-weight: 800;
 
           &:not(:active, :focus, :hover) {
             transition: color var(--link-duration-out);

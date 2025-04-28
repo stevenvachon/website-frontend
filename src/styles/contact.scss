@@ -127,8 +127,9 @@
       var(--overlay-shadow-offset) var(----overlay-shadow-blur);
     box-sizing: border-box;
     color: var(--yellow);
+    font-family: var(--alternative-font);
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 800;
     left: 50%;
     min-height: calc(
       1em + (var(--padding) * 2)

@@ -37,6 +37,8 @@
         var(--site-padding);
 
       .-blog--secondary-organizing-title {
+        font-family: var(--alternative-font);
+        font-weight: 800;
         margin-bottom: 2rem;
         text-transform: uppercase;
       }
