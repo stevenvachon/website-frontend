@@ -2,9 +2,12 @@
 @use 'variables';
 
 %blog {
+  --secondary-width: 15rem;
+
   @extend %main;
   align-items: flex-start;
   display: flex;
+  flex-wrap: wrap; // To support `%pane` as a child
 
   .-blog--primary {
     box-sizing: border-box;
@@ -14,17 +17,22 @@
     min-width: 0; // For articles with code blocks; https://medium.com/@hbarcelos/flexbox-gotchas-reloaded-ce92a18343d4
     padding-left: var(--site-padding);
 
+    @container style(--is-at-least-tablet-size: true) {
+      width: calc(100% - var(--secondary-width));
+    }
+
     @container style(--is-at-least-tablet-size: false) {
       padding-right: var(--site-padding);
     }
   }
 
   .-blog--secondary {
-    border-left: 1px solid var(--white-trans-subtler);
     box-sizing: border-box;
-    flex-basis: 15rem;
-    flex-shrink: 0;
-    margin-top: var(--site-padding);
+    padding-left: 1px; // For pseudo-element
+    padding-top: var(--site-padding);
+    position: sticky;
+    top: 0;
+    width: var(--secondary-width);
 
     .-blog--secondary-organizing {
       background: linear-gradient(
@@ -178,6 +186,16 @@
           }
         }
       }
+    }
+
+    // This is so that there can be what is effectively a top margin above
+    // the `border`, but one that remains when the element goes sticky
+    &::before {
+      content: '';
+      border-left: 1px solid var(--white-trans-subtler);
+      height: calc(100% - var(--site-padding));
+      left: 0;
+      position: absolute;
     }
 
     @container style(--is-at-least-tablet-size: false) {

@@ -4,13 +4,12 @@
 %contact {
   @extend %main;
   display: flex;
-  padding-top: var(--site-padding);
+  flex-wrap: wrap;
   position: relative; // For "message sent" message
 
   .-contact--content {
-    box-sizing: border-box;
-    padding-right: calc(var(--site-padding) * 2);
-    width: 45%;
+    padding: var(--site-padding);
+    padding-bottom: 0;
 
     h1 {
       color: var(--yellow);
@@ -86,33 +85,33 @@
       }
     }
 
-    @container style(--is-at-least-tablet-size: false) {
-      padding-right: 0;
-      width: auto;
+    @container style(--is-at-least-tablet-size: true) {
+      box-sizing: border-box;
+      width: 45%;
     }
   }
 
   .-contact--form {
-    width: 55%;
-
-    input {
-      width: 75%;
+    textarea {
+      min-height: 14rem; // Support user-resizing
     }
 
-    textarea {
-      height: 14rem;
-      min-height: 14rem; // For resize
+    @container style(--is-at-least-tablet-size: true) {
+      box-sizing: border-box;
+      padding: var(--site-padding);
+      padding-bottom: 0;
+      width: 55%;
+
+      input {
+        width: 75%;
+      }
     }
 
     @container style(--is-at-least-tablet-size: false) {
       border-top: 1px solid var(--white-trans-subtler);
+      margin: var(--site-padding);
       margin-top: 2rem;
       padding-top: 2rem;
-      width: auto;
-
-      input {
-        width: 100%;
-      }
     }
   }
 
@@ -140,7 +139,10 @@
     text-transform: uppercase;
     top: 6rem;
     transform: translateX(-50%);
-    width: 50%;
+
+    @container style(--is-at-least-tablet-size: true) {
+      width: 50%;
+    }
 
     @container style(--is-at-least-tablet-size: false) {
       width: 75%;

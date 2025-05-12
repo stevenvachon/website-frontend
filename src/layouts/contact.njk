@@ -1,8 +1,10 @@
 ---
 layout: main.njk
 tags: contact-page
+title: Contact
 ---
-<main class="sv paned contact" itemscope itemtype="https://schema.org/ContactPage">
+<main class="sv contact" itemscope itemtype="https://schema.org/ContactPage">
+  <div class="sv pane" role="presentation"></div>
   {% if 'contact-page-sent' in (tags or []) %}
     <div class="-contact--sent">
       <span data-text-effect="typewriter" data-text-effect-stagger="0.05">Message Sent!</span>

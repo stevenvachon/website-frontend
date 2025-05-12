@@ -53,6 +53,7 @@
 
   // Sizes
   --backdrop-blur-size: 2px;
+  --backdrop-blur-size-more: calc(var(--backdrop-blur-size) * 10);
   --blue-glow-size: 0.4375rem;
   --border-radius: 0.5em; // Relative size
   --btn-border-radius: 6px;

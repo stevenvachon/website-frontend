@@ -3,9 +3,11 @@
 %pixels {
   align-self: flex-start;
   overflow-x: clip;
-  position: relative; // For child
+  position: sticky;
+  top: 0;
   //width: calc(100vw / var(--zoom));
   width: 100%; // Above line caused a horizontal scrollbar in Chrome v134
+  z-index: -1; // Appear beneath subsequent siblings
 
   projectile-pixels {
     height: 398px;
@@ -23,7 +25,6 @@
     margin-top: calc(0 - var(--site-padding));
     position: absolute;
     width: 763px;
-    z-index: -1; // Appear beneath subsequent siblings
 
     /*&:not(:defined) {
       display: block;

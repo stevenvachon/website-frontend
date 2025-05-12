@@ -73,6 +73,8 @@ Deployment will be performed automatically when pushing/merging to the "main" br
 ## To-do
 
 - Remove comments and TODOs.
+- Try adding the pane grain back when it renders correctly with `position: sticky`.
+- Try adding a gradient to titles again when the pixelate filter supports them.
 - Add a--simple math or honeypot--captcha to the contact form or switch to JS submission to prevent any abuse from bots.
 - Use GitHub Packages instead of private repository for `website-projectile-pixels`.
 - Switch from Nunjucks to JSX (or TSX) when it supports front matter.

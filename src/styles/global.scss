@@ -31,8 +31,8 @@ html {
 
 body {
   align-items: center;
-  background: var(--black) url(/images/bg.webp) no-repeat calc(50% - 300px) top /
-    calc(1866px / 2); // Size necessary for `zoom`
+  background: var(--black) url(/images/bg.webp) no-repeat fixed
+    calc(50% - 300px) top / calc(1866px / 2); // Size necessary for `zoom`
   display: flex;
   flex-direction: column;
   min-height: calc(100vh / var(--zoom));

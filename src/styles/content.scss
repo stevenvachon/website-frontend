@@ -75,6 +75,7 @@
 
   figure img,
   .eleventy-plugin-youtube-embed {
+    backdrop-filter: blur(var(--backdrop-blur-size-more));
     background-color: var(--white-trans-subtle);
     border: 1px solid var(--white-trans-subtle);
     box-sizing: border-box;
