@@ -27,9 +27,7 @@ tags: blog
             itemscope
             itemtype="https://schema.org/SiteNavigationElement"
           >
-            <a href="{{ category.url }}" itemprop="url">
-              <span itemprop="name">{{ category.title }}</span>
-            </a>
+            <a href="{{ category.url }}" itemprop="url"><span itemprop="name">{{ category.title }}</span></a>
             ({{ category.count }})
           </li>
         {% endfor %}

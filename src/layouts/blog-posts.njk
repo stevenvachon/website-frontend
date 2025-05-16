@@ -20,7 +20,11 @@ tags: blog-posts
         <div class="-blog-post--content" itemprop="description">
           {{ post.content | excerpt | safe }}
           {% if post.content | hasMoretag %}
-            <a class="-blog-posts--item-read-more" href="{{ post.url }}">Read more</a>
+            <a
+              class="-blog-posts--item-read-more"
+              href="{{ post.url }}"
+              rel="nofollow"
+            >Read more</a>
           {% endif %}
         </div>
       </article>

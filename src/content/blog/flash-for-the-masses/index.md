@@ -52,9 +52,9 @@ The following have been tested under Windows 2000 with Flash Player version 6,0,
 
 Test the [Vector Fade Benchmark](benchmark1.swf) for yourself, if you’d like.
 
-![Flash Fading Results - Raster (Celeron® 500 MHz)](benchmark1_1.png)
+![Flash Fading Results - Raster (Celeron® 500 MHz)](benchmark2_1.png)
 
-![Flash Fading Results - Raster (Pentium® 4 3.06 GHz)](benchmark1_2.png)
+![Flash Fading Results - Raster (Pentium® 4 3.06 GHz)](benchmark2_2.png)
 
 `setRGB()` was omitted as it is exclusive to MovieClips containing vector shapes. Test the [Bitmap Fade Benchmark](benchmark2.swf) for yourself, if you’d like.
 

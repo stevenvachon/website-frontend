@@ -89,7 +89,7 @@ export default (config) => {
     version: SITE_VERSION,
   });
 
-  config.addPassthroughCopy(`${CONTENT_DIR}/blog/**/*.(jpg|png|svg)`);
+  config.addPassthroughCopy(`${CONTENT_DIR}/blog/**/*.!(md|njk)`);
   config.addPassthroughCopy({ [`${CONTENT_DIR}/../images`]: 'images' });
 
   config.addPlugin(EmbedYoutubePlugin);

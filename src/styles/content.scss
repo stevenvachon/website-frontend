@@ -75,7 +75,7 @@
 
   figure img,
   .eleventy-plugin-youtube-embed {
-    backdrop-filter: blur(var(--backdrop-blur-size-more));
+    //backdrop-filter: blur(var(--backdrop-blur-size-more));
     background-color: var(--white-trans-subtle);
     border: 1px solid var(--white-trans-subtle);
     box-sizing: border-box;
@@ -128,8 +128,9 @@
   }
 
   pre {
-    background-color: var(--darker-grey);
-    border: 1px dashed var(--dark-grey);
+    //backdrop-filter: blur(var(--backdrop-blur-size-more));
+    background-color: var(--white-trans-subtle);
+    border: 1px dashed var(--white-trans-subtle);
     border-radius: var(--border-radius);
     font-size: 0.8rem;
     line-height: max(1, calc(var(--content-line-height) * 0.85));

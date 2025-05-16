@@ -31,8 +31,8 @@
     <link rel="license" href="//creativecommons.org/licenses/by-nc-nd/4.0/deed.en">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap">
-    <link rel="stylesheet" href="/styles.css" media="screen">
-    <script src="/scripts.js"></script>
+    <link rel="stylesheet" href="/styles.css?v={{ site.version }}" media="screen">
+    <script src="/scripts.js?v={{ site.version }}"></script>
     {% if 'blog-post' in (tags or []) %}
       <script>
         const disqus_config = function() {

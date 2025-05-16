@@ -8,9 +8,7 @@ tags:
 title: Decluttered Elevating Desk
 ---
 
-Apparently, I have a computer job.
-
-Sitting at the desk all day takes its toll on your shoulders and eventually your health, so I decided to purchase an elevating, or "height-adjustable" desk. Exercise aside, I am now healthier, always comfortable and get more work done in less time as I require fewer body breaks.
+Apparently, I have a computer job. Sitting at the desk all day takes its toll on your shoulders and eventually your health, so I decided to purchase an elevating, or "height-adjustable" desk. Exercise aside, I am now healthier, always comfortable and get more work done in less time as I require fewer body breaks.
 
 There was a downside to this, however: the cables! <!--more--> Grabbing inspiration from [decluttered.com](http://www.decluttered.com/), I put together something a little different, and _simpler_ in my opinion.
 

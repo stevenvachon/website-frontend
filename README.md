@@ -24,7 +24,7 @@ Open the project directory:
 cd website-frontend
 ```
 
-Be sure that [Node.js](https://nodejs.org) `>= 23` is installed.
+Be sure that [Node.js](https://nodejs.org) `>= 24` is installed.
 
 Install all dependencies:
 

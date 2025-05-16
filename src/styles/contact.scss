@@ -85,6 +85,15 @@
       }
     }
 
+    @container style(--is-at-least-tablet-size: false) {
+      background: linear-gradient(
+        to bottom,
+        transparent 25%,
+        color-mix(in srgb, var(--black) 25%, transparent)
+      );
+      padding-bottom: 2rem;
+    }
+
     @container style(--is-at-least-tablet-size: true) {
       box-sizing: border-box;
       width: 45%;
@@ -109,8 +118,7 @@
 
     @container style(--is-at-least-tablet-size: false) {
       border-top: 1px solid var(--white-trans-subtler);
-      margin: var(--site-padding);
-      margin-top: 2rem;
+      padding: var(--site-padding);
       padding-top: 2rem;
     }
   }

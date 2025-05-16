@@ -2,7 +2,7 @@
   "private": true,
   "name": "website-frontend",
   "description": "My website's frontend.",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "license": "UNLICENSED",
   "author": "Steven Vachon <contact@svachon.com> (https://svachon.com)",
   "repository": "github:stevenvachon/website-frontend",
@@ -18,7 +18,7 @@
     "test:watch": "vitest dev --coverage --coverage.include=src/scripts/**/*.mjs --coverage.reporter=html --coverage.reporter=lcov --coverage.reporter=text --environment=happy-dom"
   },
   "engines": {
-    "node": ">= 23"
+    "node": ">= 24"
   },
   "dependencies": {
     "splitting": "^1.1.0",

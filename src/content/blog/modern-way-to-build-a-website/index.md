@@ -23,7 +23,7 @@ It was time for me to upgrade from my old shared web host to something better. W
 
 ![User flow](aws-user.svg 'CloudFront (CDN) provides extreme performance via content localization with many edge servers and HTTP/3.')
 
-And because AWS [API Gateway](//aws.amazon.com/api-gateway) supports [OpenAPI](//www.openapis.org), I didn't even have to write a RESTful API implementation---which would've otherwise been with [Express 5](//expressjs.com). Per my specification, requests are simply routed from DNS, to the gateway, then to my AWS [Lambda](//aws.amazon.com/lambda)s (cloud functions).
+And because AWS [API Gateway](//aws.amazon.com/api-gateway) supports [OpenAPI](//www.openapis.org), I didn't even have to write a RESTful API implementation---which would've otherwise been with [Express 5](//expressjs.com). Per my specification, requests are simply routed from DNS (AWS [Route 53](//aws.amazon.com/route53/)), to the gateway, then to my AWS [Lambda](//aws.amazon.com/lambda)s (cloud functions).
 
 The code was written to be as agnostic as possible; meaning that if for whatever reason I felt it necessary to migrate from Amazon to something else---such as Google or Azure---it wouldn't be much effort beyond changes to dependencies and _maybe_ I/O.
 
