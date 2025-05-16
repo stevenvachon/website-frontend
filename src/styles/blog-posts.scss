@@ -2,6 +2,8 @@
 
 %blog-posts {
   .-blog-posts--item {
+    position: relative; // For pseudo-element
+
     a:any-link {
       &.-blog-posts--item-read-more {
         background-color: var(--white-trans-subtler);
@@ -16,26 +18,65 @@
           content: ' »' / '';
         }
 
-        &:not(:active, :focus, :hover) {
-          transition: var(--link-duration-out);
-        }
-
-        &:active,
-        &:focus,
-        &:hover {
+        &:is(:active, :focus, :hover) {
           color: #86a5d8;
           transition: var(--link-duration-in);
+        }
+
+        &:not(:active, :focus, :hover) {
+          transition: var(--link-duration-out);
         }
       }
     }
 
+    &::before {
+      --bottom-glow: linear-gradient(
+        to top,
+        color-mix(in srgb, var(--blue-glow-on) 10%, transparent),
+        transparent calc(var(--site-padding) * 1.5)
+      );
+      --top-glow: linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--blue-glow-on) 10%, transparent),
+        transparent calc(var(--site-padding) * 1.5)
+      );
+
+      content: '';
+      inset: 0;
+      pointer-events: none;
+      position: absolute;
+      z-index: -1; // Appear beneath subsequent siblings
+    }
+
+    &:first-of-type::before {
+      background: var(--bottom-glow);
+    }
+
+    &:last-of-type::before {
+      background: var(--top-glow);
+    }
+
+    &:not(:first-of-type, :last-of-type)::before {
+      background: var(--top-glow), var(--bottom-glow);
+    }
+
     &:not(:first-of-type) {
-      margin-top: 2.8rem;
+      padding-top: 2.8rem;
     }
 
     &:not(:last-of-type) {
       border-bottom: 1px dashed var(--white-trans-subtle);
       padding-bottom: 0.8rem;
+    }
+
+    &:is(:focus-within, :hover)::before {
+      opacity: 1;
+      transition: opacity var(--glow-duration-in);
+    }
+
+    &:not(:focus-within, :hover)::before {
+      opacity: 0;
+      transition: opacity var(--glow-duration-out);
     }
   }
 

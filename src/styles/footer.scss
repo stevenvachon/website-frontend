@@ -38,15 +38,13 @@
   .-footer--link {
     color: inherit;
 
-    &:not(:active, :focus, :hover) {
-      transition: color var(--link-duration-out);
-    }
-
-    &:active,
-    &:focus,
-    &:hover {
+    &:is(:active, :focus, :hover) {
       color: var(--light-grey);
       transition: color var(--link-duration-in);
+    }
+
+    &:not(:active, :focus, :hover) {
+      transition: color var(--link-duration-out);
     }
   }
 

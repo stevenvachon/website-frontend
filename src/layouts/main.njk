@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    {% if ('blog-post' or 'blog-archives') in (tags or []) %}
+    {% if ('blog-archives' or 'blog-category' or 'blog-post') in (tags or []) %}
       <title>{{ title }} • Steven Vachon's Blog</title>
     {% elseif 'homepage' not in (tags or []) %}
       <title>{{ title }} • Steven Vachon</title>

@@ -10,19 +10,13 @@
   flex-wrap: wrap; // To support `%pane` as a child
 
   .-blog--primary {
-    box-sizing: border-box;
     flex-grow: 1;
     font-style: normal;
     margin-top: 2rem;
     min-width: 0; // For articles with code blocks; https://medium.com/@hbarcelos/flexbox-gotchas-reloaded-ce92a18343d4
-    padding-left: var(--site-padding);
 
     @container style(--is-at-least-tablet-size: true) {
       width: calc(100% - var(--secondary-width));
-    }
-
-    @container style(--is-at-least-tablet-size: false) {
-      padding-right: var(--site-padding);
     }
   }
 
@@ -41,13 +35,12 @@
         color-mix(in srgb, var(--black) 25%, transparent)
       );
       border-bottom: 1px solid var(--white-trans-subtler);
-      padding: 0 var(--site-padding) calc(var(--site-padding) / 2)
-        var(--site-padding);
+      padding-bottom: calc(var(--site-padding) / 2);
 
       .-blog--secondary-organizing-title {
         font-family: var(--alternative-font);
         font-weight: 800;
-        margin-bottom: 2rem;
+        margin: 0 var(--site-padding) 2rem;
         text-transform: uppercase;
       }
 
@@ -63,73 +56,115 @@
             font-size: 0.7rem;
             text-transform: uppercase;
 
-            &:not(:active, :focus, :hover) {
-              transition: var(--link-duration-out);
-            }
-
-            &:active,
-            &:focus,
-            &:hover {
+            &:is(:active, :focus, :hover) {
               color: var(--light-grey);
               transition: var(--link-duration-in);
+            }
+
+            &:not(:active, :focus, :hover) {
+              transition: var(--link-duration-out);
             }
           }
         }
 
         &.-blog--secondary-organizing-categories {
           li {
+            --category-item-padding: 0.325rem;
+
             color: var(--light-grey);
             filter: drop-shadow(
               var(--text-shadow-offset) var(--text-shadow-offset)
                 var(--text-shadow-blur) var(--black)
             ); // `text-shadow` is applied to transparent underlines
-            margin-top: 0.65rem;
+            padding: var(--category-item-padding) var(--site-padding);
+            position: relative; // For pseudo-elements
             text-shadow: none;
 
             a:any-link {
-              color: var(--white);
               margin-left: 1rem;
-              position: relative; // For pseudo-element
               text-decoration: underline;
 
+              &::after,
               &::before {
-                background: radial-gradient(
-                  ellipse at center,
-                  #fedd7c,
-                  #ccaa44
-                );
-                background-position: 50% -100%;
-                background-size: 100% 200%;
-                border-radius: 50%;
-                box-sizing: border-box;
                 content: '';
-                height: 0.5rem;
-                left: -1rem;
-                margin: 0 0.5rem 0.14rem 0;
                 position: absolute;
-                top: 0.3rem;
-                width: 0.5rem;
+              }
+
+              &::after {
+                background: linear-gradient(
+                  to bottom,
+                  transparent,
+                  var(--white-trans-subtler) 20%,
+                  var(--white-trans-subtler) 80%,
+                  transparent
+                );
+                inset: 0;
+                mask: linear-gradient(
+                  to right,
+                  #ffffff00,
+                  #ffffff var(--site-padding),
+                  #ffffff calc(100% - var(--site-padding) * 2),
+                  #ffffff00
+                );
+                pointer-events: none;
+                z-index: -1; // Appear beneath subsequent siblings
+              }
+
+              &:is(:active, :focus, :hover) {
+                transition: var(--link-duration-in);
+
+                &::after {
+                  opacity: 1;
+                  transition: opacity var(--glow-duration-in),
+                    transform var(--glow-duration-in);
+                }
               }
 
               &:not(:active, :focus, :hover) {
                 text-decoration-color: transparent;
                 transition: var(--link-duration-out);
-              }
 
-              &:active,
-              &:focus,
-              &:hover {
-                transition: var(--link-duration-in);
+                &::after {
+                  opacity: 0;
+                  transform: scaleX(50%);
+                  transform-origin: left;
+                  transition: opacity var(--glow-duration-out),
+                    transform var(--glow-duration-out);
+                }
+              }
+            }
+
+            &:not(.-blog--secondary-organizing-categories-selected) {
+              a:any-link {
+                color: var(--white);
+
+                &::before {
+                  background: radial-gradient(
+                    ellipse at center,
+                    #fedd7c,
+                    #ccaa44
+                  );
+                  background-position: 50% -100%;
+                  background-size: 100% 200%;
+                  border-radius: 50%;
+                  height: 0.5rem;
+                  left: var(--site-padding);
+                  margin: 0 0.5rem 0.14rem 0;
+                  top: calc(var(--category-item-padding) + 0.3rem);
+                  width: 0.5rem;
+                }
               }
             }
 
             &.-blog--secondary-organizing-categories-selected {
-              a:any-link {
-                color: inherit;
-
-                &::before {
-                  content: none;
-                }
+              a:any-link::before {
+                background-color: var(--dark-grey);
+                height: 1rem;
+                left: calc(var(--site-padding) - 0.5rem);
+                mask: url(/images/arrow.svg) no-repeat center center / contain;
+                top: calc(var(--category-item-padding) + 0.1rem);
+                transform: rotate(180deg);
+                width: 1rem;
               }
             }
           }
@@ -161,15 +196,13 @@
               width: 0.75rem;
             }
 
-            &:not(:active, :focus, :hover) {
-              transition: var(--link-duration-out);
-            }
-
-            &:active,
-            &:focus,
-            &:hover {
+            &:is(:active, :focus, :hover) {
               color: var(--white);
               transition: var(--link-duration-in);
+            }
+
+            &:not(:active, :focus, :hover) {
+              transition: var(--link-duration-out);
             }
 
             &.-blog--secondary-other-rss::before {

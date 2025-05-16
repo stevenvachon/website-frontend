@@ -159,6 +159,7 @@ export default (config) => {
           collapseWhitespace: true,
           minifyCss: true,
           minifySvg: false, // No need
+          sortAttributesWithLists: false,
         })
       ).html;
     } else {

@@ -48,18 +48,7 @@
             width: 0.75rem;
           }
 
-          &:not(:active, :focus, :hover) {
-            text-decoration-color: transparent;
-            transition: var(--link-duration-out);
-
-            &::before {
-              transition: var(--link-duration-out);
-            }
-          }
-
-          &:active,
-          &:focus,
-          &:hover {
+          &:is(:active, :focus, :hover) {
             color: var(--lighter-grey);
             text-decoration-color: var(--dark-grey);
             transition: var(--link-duration-in);
@@ -67,6 +56,15 @@
             &::before {
               background-color: var(--white);
               transition: var(--link-duration-in);
+            }
+          }
+
+          &:not(:active, :focus, :hover) {
+            text-decoration-color: transparent;
+            transition: var(--link-duration-out);
+
+            &::before {
+              transition: var(--link-duration-out);
             }
           }
 

@@ -52,14 +52,6 @@
       cursor: ns-resize;
     }*/
 
-    &:not(:focus):hover {
-      scrollbar-color: var(--input-border-color-hover) transparent;
-
-      /*&::-webkit-resizer {
-        border-color: var(--input-border-color-hover);
-      }*/
-    }
-
     &:focus {
       scrollbar-color: var(--yellow) transparent;
 
@@ -67,33 +59,13 @@
         border-color: var(--yellow);
       }*/
     }
-  }
 
-  &:not(:has(input:focus, textarea:focus)) {
-    &:not(:hover) {
-      input,
-      textarea {
-        transition: background-color var(--glow-duration-out),
-          border-color var(--glow-duration-out),
-          box-shadow calc(var(--glow-duration-out) * 2),
-          color var(--link-duration-out),
-          scrollbar-color var(--glow-duration-out),
-          text-shadow var(--glow-duration-out);
-      }
+    &:not(:focus):hover {
+      scrollbar-color: var(--input-border-color-hover) transparent;
 
-      label {
-        transition: color var(--link-duration-out),
-          text-shadow var(--glow-duration-out);
-      }
-    }
-
-    &:hover {
-      input,
-      textarea {
+      /*&::-webkit-resizer {
         border-color: var(--input-border-color-hover);
-        box-shadow: 0 0 0.3125rem 0
-          color-mix(in srgb, var(--white) 20%, transparent);
-      }
+      }*/
     }
   }
 
@@ -114,6 +86,34 @@
         color-mix(in srgb, var(--white) 80%, transparent); // Relative size
       transition: color var(--link-duration-in),
         text-shadow var(--glow-duration-in);
+    }
+  }
+
+  &:not(:has(input:focus, textarea:focus)) {
+    &:hover {
+      input,
+      textarea {
+        border-color: var(--input-border-color-hover);
+        box-shadow: 0 0 0.3125rem 0
+          color-mix(in srgb, var(--white) 20%, transparent);
+      }
+    }
+
+    &:not(:hover) {
+      input,
+      textarea {
+        transition: background-color var(--glow-duration-out),
+          border-color var(--glow-duration-out),
+          box-shadow calc(var(--glow-duration-out) * 2),
+          color var(--link-duration-out),
+          scrollbar-color var(--glow-duration-out),
+          text-shadow var(--glow-duration-out);
+      }
+
+      label {
+        transition: color var(--link-duration-out),
+          text-shadow var(--glow-duration-out);
+      }
     }
   }
 

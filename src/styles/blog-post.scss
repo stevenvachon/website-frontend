@@ -4,6 +4,8 @@
 %blog-post {
   --margin-top: 1.7rem;
 
+  padding-left: var(--site-padding);
+
   .-blog-post--comments {
     margin-top: calc(var(--margin-top) * 2);
   }
@@ -32,18 +34,20 @@
     a:any-link {
       text-decoration: underline;
 
+      &:is(:active, :focus, :hover) {
+        text-decoration-color: var(--yellow);
+        transition: var(--link-duration-in);
+      }
+
       &:not(:active, :focus, :hover) {
         text-decoration-color: transparent;
         transition: var(--link-duration-out);
       }
-
-      &:active,
-      &:focus,
-      &:hover {
-        text-decoration-color: var(--yellow);
-        transition: var(--link-duration-in);
-      }
     }
+  }
+
+  @container style(--is-at-least-tablet-size: false) {
+    padding-right: calc(var(--site-padding));
   }
 
   @container style(--is-at-least-tablet-size: true) {

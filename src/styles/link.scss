@@ -10,17 +10,15 @@
   text-decoration: underline;
   text-decoration-color: var(--yellow);
 
-  &:not(:active, :focus, :hover) {
-    transition: var(--link-duration-out);
-  }
-
-  &:active,
-  &:focus,
-  &:hover {
+  &:is(:active, :focus, :hover) {
     background-color: var(--white-trans-subtle);
     border-radius: var(--link-border-radius);
     color: var(--yellow);
     text-decoration-color: transparent;
     transition: var(--link-duration-in);
+  }
+
+  &:not(:active, :focus, :hover) {
+    transition: var(--link-duration-out);
   }
 }
