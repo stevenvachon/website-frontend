@@ -4,7 +4,7 @@ tags: blog-posts
 ---
 <div class="sv blog-posts" itemscope itemtype="https://schema.org/CollectionPage">
   {% if tag %}
-    <h1 class="-blog-posts--title" itemprop="name">Archive for posts categorized as "<strong>{{ tag }}</strong>"</h1>
+    <h1 class="-blog-posts--title" itemprop="name">Archive for posts categorized as "<strong>{{ tag | blogCategoryTitle }}</strong>"</h1>
   {% endif %}
   {% for post in collections[tag or 'blog-post'] | reverse %}
     <div class="-blog-posts--item">

@@ -1,3 +1,7 @@
+import {
+  BLOG_CATEGORY_TAG_PREFIX,
+  formatBlogCategoryTag,
+} from './src/scripts/util/index.mjs';
 import cssnano from 'cssnano';
 import EmbedYoutubePlugin from 'eleventy-plugin-youtube-embed';
 import { feedPlugin as FeedPlugin } from '@11ty/eleventy-plugin-rss';
@@ -33,20 +37,18 @@ const SITE_URL = 'https://svachon.com';
 export default (config) => {
   config.addCollection('categoryCounts', (collectionApi) => {
     const posts = collectionApi.getFilteredByTag('blog-post');
-    const CATEGORY_TAG_PREFIX = 'blog-category-';
     const obj = posts.reduce(
       (categories, post) => {
         post.data.tags
-          .filter((tag) => tag.startsWith(CATEGORY_TAG_PREFIX))
+          .filter((tag) => tag.startsWith(BLOG_CATEGORY_TAG_PREFIX))
           .forEach((tag) => {
             if (categories[tag] === undefined) {
-              const slug = tag.replace(CATEGORY_TAG_PREFIX, '');
               categories[tag] = {
                 count: 0,
                 //posts: [],
                 tag,
-                title: `${slug[0].toUpperCase()}${slug.slice(1)}`,
-                url: `/blog/category/${/*slug*/ tag}/`,
+                title: formatBlogCategoryTag(tag, true),
+                url: `/blog/category/${formatBlogCategoryTag(tag)}/`,
               };
             }
             categories[tag].count++;
@@ -69,6 +71,10 @@ export default (config) => {
       .map((key) => obj[key]);
   });
 
+  config.addFilter('blogCategoryTitle', (tag) =>
+    formatBlogCategoryTag(tag, true)
+  );
+
   config.addFilter('dateFull', (date) =>
     new Intl.DateTimeFormat('en-US', {
       dateStyle: 'full',
@@ -89,7 +95,7 @@ export default (config) => {
     version: SITE_VERSION,
   });
 
-  config.addPassthroughCopy(`${CONTENT_DIR}/blog/**/*.!(md|njk)`);
+  config.addPassthroughCopy(`${CONTENT_DIR}/blog/**/*.!(11ty.mjs|md|njk)`);
   config.addPassthroughCopy({ [`${CONTENT_DIR}/../images`]: 'images' });
 
   config.addPlugin(EmbedYoutubePlugin);
