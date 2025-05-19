@@ -1,24 +1,24 @@
 import { beforeAll, beforeEach, expect, test as it, vi } from 'vitest';
-import analytics from './analytics.mjs';
-import effects from './effects.mjs';
-import textEffects from './textEffects.mjs';
+import analytics from './analytics.js';
+import effects from './effects.js';
+import textEffects from './textEffects.js';
 
-vi.mock('./analytics.mjs', async () => ({
+vi.mock('./analytics.js', async () => ({
   default: vi
     .fn()
-    .mockImplementation((await vi.importActual('./analytics.mjs')).default),
+    .mockImplementation((await vi.importActual('./analytics.js')).default),
 }));
 
-vi.mock('./effects.mjs', async () => ({
+vi.mock('./effects.js', async () => ({
   default: vi
     .fn()
-    .mockImplementation((await vi.importActual('./effects.mjs')).default),
+    .mockImplementation((await vi.importActual('./effects.js')).default),
 }));
 
-vi.mock('./textEffects.mjs', async () => ({
+vi.mock('./textEffects.js', async () => ({
   default: vi
     .fn()
-    .mockImplementation((await vi.importActual('./textEffects.mjs')).default),
+    .mockImplementation((await vi.importActual('./textEffects.js')).default),
 }));
 
 beforeAll(() => vi.stubGlobal('fetch', vi.fn()));
@@ -31,7 +31,7 @@ it('works', async () => {
   window.addEventListener('error', errorSpy);
   window.addEventListener('unhandledrejection', rejectionSpyDOM);
   process.on('unhandledRejection', rejectionSpyNode);
-  await import('./index.mjs');
+  await import('./index.js');
   await new Promise((resolve) => setTimeout(resolve, 0)); // Delay for execution
   expect(analytics).toHaveBeenCalledOnce();
   expect(effects).toHaveBeenCalledOnce();

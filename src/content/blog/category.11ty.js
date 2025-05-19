@@ -1,7 +1,7 @@
 import {
   BLOG_CATEGORY_TAG_PREFIX,
   formatBlogCategoryTag,
-} from '../../scripts/util/index.mjs';
+} from '../../scripts/util/index.js';
 
 /**
  * Generate a page of blog posts for each blog category (tag).

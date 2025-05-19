@@ -3,7 +3,7 @@ import {
   numberError,
   stringError,
   watchForReadyElements,
-} from './util/index.mjs';
+} from './util/index.js';
 import splitting from 'splitting';
 import Typed from 'typed.js';
 import { UAParser } from 'ua-parser-js';

@@ -6,6 +6,7 @@
   "license": "UNLICENSED",
   "author": "Steven Vachon <contact@svachon.com> (https://svachon.com)",
   "repository": "github:stevenvachon/website-frontend",
+  "type": "module",
   "scripts": {
     "build": "npm run build:clean:pre && eleventy && npm run build:clean:post && npm run build:size:css && npm run build:size:js",
     "build:clean:post": "rimraf build/styles.css.map",
@@ -15,7 +16,7 @@
     "dev": "npm run build:clean:pre && eleventy --serve",
     "lint": "eslint",
     "test": "npm run test:watch -- --run",
-    "test:watch": "vitest dev --coverage --coverage.include=src/scripts/**/*.mjs --coverage.reporter=html --coverage.reporter=lcov --coverage.reporter=text --environment=happy-dom"
+    "test:watch": "vitest dev --coverage --coverage.include=src/scripts/**/*.js --coverage.reporter=html --coverage.reporter=lcov --coverage.reporter=text --environment=happy-dom"
   },
   "engines": {
     "node": ">= 24"

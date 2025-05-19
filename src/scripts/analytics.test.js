@@ -16,7 +16,7 @@ import analytics, {
   SESSION_ID_KEY,
   SESSION_START_EVENT,
   SESSION_TIMEOUT_EVENT,
-} from './analytics.mjs';
+} from './analytics.js';
 
 describe('Humans', () => {
   const MESSAGE_METADATA = {

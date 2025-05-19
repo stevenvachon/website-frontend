@@ -1,7 +1,7 @@
 import {
   BLOG_CATEGORY_TAG_PREFIX,
   formatBlogCategoryTag,
-} from './src/scripts/util/index.mjs';
+} from './src/scripts/util/index.js';
 import cssnano from 'cssnano';
 import EmbedYoutubePlugin from 'eleventy-plugin-youtube-embed';
 import { feedPlugin as FeedPlugin } from '@11ty/eleventy-plugin-rss';
@@ -95,7 +95,7 @@ export default (config) => {
     version: SITE_VERSION,
   });
 
-  config.addPassthroughCopy(`${CONTENT_DIR}/blog/**/*.!(11ty.mjs|md|njk)`);
+  config.addPassthroughCopy(`${CONTENT_DIR}/blog/**/*.!(11ty.js|md|njk)`);
   config.addPassthroughCopy({ [`${CONTENT_DIR}/../images`]: 'images' });
 
   config.addPlugin(EmbedYoutubePlugin);
@@ -145,7 +145,7 @@ export default (config) => {
       mode: IS_WATCHING ? 'development' : 'production',
     }),
     entryPoints: {
-      scripts: `${INPUT_DIR}/scripts/index.mjs`,
+      scripts: `${INPUT_DIR}/scripts/index.js`,
     },
     output: OUTPUT_DIR,
   });

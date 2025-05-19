@@ -2,7 +2,7 @@ import {
   numberError,
   stringError,
   watchForReadyElements,
-} from './util/index.mjs';
+} from './util/index.js';
 
 export const EFFECT_ATTR = 'data-effect';
 export const EFFECT_DELAY_ATTR = 'data-effect-delay';
