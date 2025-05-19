@@ -1,7 +1,7 @@
 ---
 date: 2003-06-12
 description: Macromedia's user interface components have cooties.
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-graphics
   - blog-category-rants

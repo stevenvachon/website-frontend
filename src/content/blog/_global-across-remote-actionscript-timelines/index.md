@@ -1,7 +1,7 @@
 ---
 date: 2003-09-01
 description: ActionScript 1 global objects are limited and require a less-than-pretty workaround.
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-engineering
   - blog-category-rants

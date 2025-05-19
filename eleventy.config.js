@@ -1,7 +1,3 @@
-import {
-  BLOG_CATEGORY_TAG_PREFIX,
-  formatBlogCategoryTag,
-} from './src/scripts/util/index.js';
 import cssnano from 'cssnano';
 import EmbedYoutubePlugin from 'eleventy-plugin-youtube-embed';
 import { feedPlugin as FeedPlugin } from '@11ty/eleventy-plugin-rss';
@@ -35,67 +31,13 @@ const OUTPUT_DIR = './build';
 const SITE_URL = 'https://svachon.com';
 
 export default (config) => {
-  config.addCollection('categoryCounts', (collectionApi) => {
-    const posts = collectionApi.getFilteredByTag('blog-post');
-    const obj = posts.reduce(
-      (categories, post) => {
-        post.data.tags
-          .filter((tag) => tag.startsWith(BLOG_CATEGORY_TAG_PREFIX))
-          .forEach((tag) => {
-            if (categories[tag] === undefined) {
-              categories[tag] = {
-                count: 0,
-                //posts: [],
-                tag,
-                title: formatBlogCategoryTag(tag, true),
-                url: `/blog/category/${formatBlogCategoryTag(tag)}/`,
-              };
-            }
-            categories[tag].count++;
-            //categories[tag].posts.push(post);
-          });
-        return categories;
-      },
-      {
-        _all: {
-          count: posts.length,
-          //posts,
-          tag: '_null',
-          title: 'All posts',
-          url: '/blog',
-        },
-      }
-    );
-    return Object.keys(obj)
-      .sort()
-      .map((key) => obj[key]);
-  });
-
-  config.addFilter('blogCategoryTitle', (tag) =>
-    formatBlogCategoryTag(tag, true)
-  );
-
-  config.addFilter('dateFull', (date) =>
-    new Intl.DateTimeFormat('en-US', {
-      dateStyle: 'full',
-      timeZone: 'UTC',
-    }).format(new Date(date))
-  );
-
-  config.addFilter('dateISO', (date) =>
-    new Date(date).toISOString().replace(/T00:00:00.000Z$/, '')
-  );
-
-  config.addFilter('dateYear', (date) => date.getFullYear());
-  config.addFilter('encodeURIComponent', (url) => encodeURIComponent(url));
-
   config.addGlobalData('site', {
     lastModified: new Date(),
     url: SITE_URL,
     version: SITE_VERSION,
   });
 
-  config.addPassthroughCopy(`${CONTENT_DIR}/blog/**/*.!(11ty.js|md|njk)`);
+  config.addPassthroughCopy(`${CONTENT_DIR}/blog/**/*.(jpg|png|svg|swf|webp)`);
   config.addPassthroughCopy({ [`${CONTENT_DIR}/../images`]: 'images' });
 
   config.addPlugin(EmbedYoutubePlugin);
@@ -180,21 +122,6 @@ export default (config) => {
       return content;
     }
   });
-
-  const isMeLink = (href) => {
-    try {
-      const hrefURL = new URL(href, SITE_URL);
-      return [
-        'github.com/stevenvachon',
-        'linkedin.com/in/stevenvachon',
-        'x.com/stevenvachon',
-      ].some((meLink) =>
-        `${hrefURL.hostname}${hrefURL.pathname}`.startsWith(meLink)
-      );
-    } catch {
-      return false;
-    }
-  };
 
   config.amendLibrary('md', (mdLib) => {
     mdLib.set({ typographer: true });
@@ -287,6 +214,21 @@ export default (config) => {
       figcaption: 'title',
       lazyLoading: true,
     });
+
+    const isMeLink = (href) => {
+      try {
+        const hrefURL = new URL(href, SITE_URL);
+        return [
+          'github.com/stevenvachon',
+          'linkedin.com/in/stevenvachon',
+          'x.com/stevenvachon',
+        ].some((meLink) =>
+          `${hrefURL.hostname}${hrefURL.pathname}`.startsWith(meLink)
+        );
+      } catch {
+        return false;
+      }
+    };
 
     mdLib.use(MarkdownItLinkAttrbutes, [
       {

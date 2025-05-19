@@ -1,7 +1,7 @@
 ---
 date: 2003-06-04
 description: Flash will never replace HTML. It was never meant to.
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-graphics
   - blog-category-rants

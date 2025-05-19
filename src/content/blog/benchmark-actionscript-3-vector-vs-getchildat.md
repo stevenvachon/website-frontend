@@ -1,7 +1,7 @@
 ---
 date: 2009-12-11
 description: Compares the performance increase in using a Vector() array instead of DisplayObjectContainer.getChildAt() for an ActionScript 3 particle emitter.
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-engineering
   - blog-post

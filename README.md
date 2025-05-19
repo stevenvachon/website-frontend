@@ -73,18 +73,17 @@ Deployment will be performed automatically when pushing/merging to the "main" br
 ## To-do
 
 - Remove comments and TODOs.
+- Blog articles with their own directory are not auto-compiled in watch mode.
 - Try adding the pane grain back when it renders correctly with `position: sticky`.
 - Try adding a gradient to titles again when the pixelate filter supports them.
 - Add a--simple math or honeypot--captcha to the contact form or switch to JS submission to prevent any abuse from bots.
 - Use GitHub Packages instead of private repository for `website-projectile-pixels`.
-- Switch from Nunjucks to JSX (or TSX) when it supports front matter.
 - ~~Move blog post `title`s from their front matter to `#` header when possible.~~
-- Move `title` concatenations from `index` layout to their respective chained layouts' front matter when possible.
 - Remove `build:clean:post` npm script when possible.
+- Add `loading="lazy"` to Disqus widget when possible [without `MutationObserver`].
 - Add print CSS; maybe use `@media print {}`.
 - Try using `display: grid` instead of `flex` because it was blocking `container-type`.
 - Add `@container` query to remove blog sidebar when too narrow (primarily for user-set larger fonts).
-- Add `site.version` to _styles.css_ and _scripts.js_.
 - Try using ~~parcel~~ ~~esbuild~~ Rollup or Vite instead of webpack.
 - Try switching to npm workspaces.
 - Try [element-ready](https://npmjs.com/element-ready) again when possible: https://github.com/sindresorhus/element-ready/issues/52.
@@ -94,9 +93,6 @@ Deployment will be performed automatically when pushing/merging to the "main" br
 - Fix [`<figcaption>` issue](https://github.com/arve0/markdown-it-implicit-figures/issues/56).
 - ~~Blog archives.~~
 - Exclude atom/rss feed from sitemap: https://github.com/11ty/eleventy-plugin-rss/issues/62
-- Make tags list in _content/blog/category.njk_ dynamic somehow and strip the "blog-category-" prefix from generated output:
-  - https://github.com/11ty/eleventy/discussions/3690
-  - https://github.com/11ty/eleventy/discussions/3691
 
 [codecov-image]: https://img.shields.io/codecov/c/github/stevenvachon/website-frontend
 [codecov-url]: https://app.codecov.io/github/stevenvachon/website-frontend

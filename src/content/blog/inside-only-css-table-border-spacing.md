@@ -1,7 +1,7 @@
 ---
 date: 2013-01-30
 description: How to remove that outer padding on your CSS table layouts caused by border-spacing.
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-websites
   - blog-post

@@ -1,7 +1,7 @@
 ---
 date: 2012-03-25
 description: Compares the difference in performance between PHP's strlen() and count().
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-engineering
   - blog-post

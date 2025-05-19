@@ -1,7 +1,7 @@
 ---
 date: 2003-09-12
 description: Macromedia MX 2004 is not up to my standards. Read on to find out why.
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-graphics
   - blog-category-rants

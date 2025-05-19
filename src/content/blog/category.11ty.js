@@ -1,6 +1,7 @@
 import {
   BLOG_CATEGORY_TAG_PREFIX,
   formatBlogCategoryTag,
+  formatBlogCategoryTagURL,
 } from '../../scripts/util/index.js';
 
 /**
@@ -8,11 +9,11 @@ import {
  */
 export const data = {
   eleventyComputed: {
-    permalink: ({ tag }) => `/blog/category/${formatBlogCategoryTag(tag)}/`,
+    permalink: ({ tag }) => formatBlogCategoryTagURL(tag),
     title: ({ tag }) =>
       `Category Archive for "${formatBlogCategoryTag(tag, true)}"`,
   },
-  layout: 'blog-posts.njk',
+  layout: 'blog-posts.11ty.js',
   pagination: {
     alias: 'tag', // Provided to `eleventyComputed` and `layout`
     /**

@@ -1,7 +1,7 @@
 ---
 date: 2012-09-07
 description: How to decrease clutter, increase productivity and improve your health at your computer workstation.
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-projects
   - blog-post

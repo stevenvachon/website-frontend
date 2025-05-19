@@ -1,6 +1,6 @@
 ---
 date: 2003-05-30
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-announcements
   - blog-post

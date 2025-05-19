@@ -1,7 +1,7 @@
 ---
 date: 2012-04-28
 description: A simple idea to beautify the booleans in your URL query strings.
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-engineering
   - blog-category-websites

@@ -1,7 +1,7 @@
 ---
 date: 2012-06-30
 description: Compares the difference in performance between PHP's array_splice() and unset() & array_values().
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-engineering
   - blog-post

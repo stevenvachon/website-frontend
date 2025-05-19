@@ -1,7 +1,7 @@
 ---
 date: 2009-03-14
 description: How to achieve a folder name containing a colon ':' character in Mac OS X.
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-miscellaneous
   - blog-post

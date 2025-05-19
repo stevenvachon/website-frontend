@@ -1,7 +1,7 @@
 ---
 date: 2011-07-24
 description: The most efficient way to randomize or shuffle the indexes of an Array in ActionScript and JavaScript.
-layout: blog-post.njk
+layout: blog-post.11ty.js
 tags:
   - blog-category-engineering
   - blog-category-websites
