@@ -5,7 +5,6 @@
   @extend %main;
   display: flex;
   flex-wrap: wrap;
-  position: relative; // For "message sent" message
 
   .-contact--content {
     padding: var(--site-padding);
@@ -122,37 +121,15 @@
   }
 
   .-contact--sent {
-    --padding: 50px;
-
-    backdrop-filter: blur(var(--backdrop-blur-size));
-    background-color: var(--dark-grey-trans);
-    border-radius: var(--btn-border-radius);
-    border: 1px dashed var(--yellow);
-    box-shadow: var(--black-trans-subtle) var(--overlay-shadow-offset)
-      var(--overlay-shadow-offset) var(----overlay-shadow-blur);
-    box-sizing: border-box;
     color: var(--yellow);
     font-family: var(--alternative-font);
     font-size: 1.5rem;
     font-weight: 800;
-    left: 50%;
-    min-height: calc(
-      1em + (var(--padding) * 2)
-    ); // For typewriting effect - relative size
-    padding: var(--padding) 0;
-    position: absolute;
+    position: relative;
     text-align: center;
     text-transform: uppercase;
-    top: 6rem;
-    transform: translateX(-50%);
-
-    @container style(--is-at-least-tablet-size: true) {
-      width: 50%;
-    }
-
-    @container style(--is-at-least-tablet-size: false) {
-      width: 75%;
-    }
+    top: 45%;
+    transform: translateY(-50%);
   }
 
   @container style(--is-at-least-tablet-size: false) {

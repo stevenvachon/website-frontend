@@ -1,0 +1,12 @@
+@use 'variables';
+
+%modal {
+  // Note: `::backdrop` requires JavaScript
+  background-color: var(--black-trans-subtle);
+  backdrop-filter: blur(var(--backdrop-blur-size-more));
+  height: calc(100vh / var(--zoom));
+  inset: 0;
+  position: fixed;
+  width: calc(100vw / var(--zoom));
+  z-index: 2; // Appear over rest of site
+}

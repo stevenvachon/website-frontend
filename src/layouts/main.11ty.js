@@ -77,7 +77,10 @@ export default ({
         : ''}
     </head>
     <body>
-      <header class="sv header">
+      <header
+        class="sv header"
+        ${tags?.includes('contains-modal') ? html`inert` : ''}
+      >
         <div class="-header--nav-home">
           <a aria-label="Go to homepage" href="/">
             ${tags?.includes('homepage')
@@ -165,7 +168,10 @@ export default ({
         : ''}
       ${content}
       <hr />
-      <footer class="sv footer">
+      <footer
+        class="sv footer"
+        ${tags?.includes('contains-modal') ? html`inert` : ''}
+      >
         <span class="-footer--legal">
           &copy; <time>1999</time>&ndash;<time
             >${dateYear(site.lastModified)}</time
