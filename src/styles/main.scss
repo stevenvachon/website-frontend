@@ -1,14 +1,7 @@
 @use 'container';
 
 %main {
-  --padding-bottom: 3.5rem;
-
   @extend %container;
   flex-grow: 1;
-  mask: linear-gradient(
-    to top,
-    #ffffff00,
-    #ffffff var(--padding-bottom)
-  ); // Hide any absolutely positioned elements
-  padding-bottom: var(--padding-bottom);
+  padding-bottom: 3.5rem;
 }

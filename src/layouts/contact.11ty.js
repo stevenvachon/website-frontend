@@ -11,14 +11,22 @@ export default ({ tags }) => html`
     <div class="sv pane" role="presentation"></div>
     ${tags?.includes('contact-page-sent')
       ? html`
-          <div class="-contact--sent">
-            <span data-text-effect="typewriter" data-text-effect-stagger="0.05"
-              >Message Sent!</span
-            >
-          </div>
+          <dialog class="sv modal" open>
+            <div class="-contact--sent">
+              <span
+                data-text-effect="typewriter"
+                data-text-effect-stagger="0.05"
+                >Message Sent!</span
+              >
+            </div>
+          </dialog>
         `
       : ''}
-    <article class="-contact--content" itemprop="mainContentOfPage">
+    <article
+      class="-contact--content"
+      ${tags?.includes('contact-page-sent') ? html`inert` : ''}
+      itemprop="mainContentOfPage"
+    >
       ${tags?.includes('contact-page-sent')
         ? html`<h1>Getting in contact</h1>`
         : html`<h1

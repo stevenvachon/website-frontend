@@ -13,13 +13,14 @@
 @use 'input';
 @use 'link';
 @use 'main';
+@use 'modal';
 @use 'pane';
 @use 'pixels';
 @use 'util';
 
 .sv {
   $names: 'blog', 'blog-post', 'blog-posts', 'btn', 'contact', 'content',
-    'footer', 'header', 'input', 'link', 'pane', 'pixels', 'main';
+    'footer', 'header', 'input', 'link', 'main', 'modal', 'pane', 'pixels';
 
   @each $name in $names {
     &.#{$name} {

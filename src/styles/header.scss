@@ -113,7 +113,7 @@
       overflow-y: clip;
       position: absolute;
       right: 0;
-      z-index: 2; // Appear over rest of site
+      z-index: 1; // Appear over rest of site
 
       li {
         display: block;
