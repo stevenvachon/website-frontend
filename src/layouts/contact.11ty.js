@@ -98,7 +98,9 @@ export default ({ tags }) => html`
           required
         ></textarea>
       </div>
-      <button class="sv btn" type="submit">Send Message</button>
+      <button class="sv btn" type="submit">
+        <span class="-chevrons">Send Message</span>
+      </button>
     </form>
   </main>
 `;

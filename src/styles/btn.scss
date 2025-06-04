@@ -1,88 +1,244 @@
 @use 'variables';
 
+@property --angle {
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0turn;
+}
+
 %btn {
   backdrop-filter: blur(var(--backdrop-blur-size));
-  background-color: color-mix(in srgb, var(--black) 85%, transparent);
+  background-color: var(--black-trans-subtle);
   border: 1px solid var(--blue-glow-border-off);
   border-radius: var(--btn-border-radius);
-  box-shadow: 0 0 var(--blue-glow-size) 0 var(--blue-glow-off);
   color: var(--yellow);
   cursor: pointer;
+  display: inline-block;
   font-family: var(--alternative-font);
   font-size: var(--btn-font-size);
   font-style: inherit;
   font-weight: 800;
   letter-spacing: 0.025em; // Relative size
-  padding: var(--btn-padding);
-  padding-right: var(--btn-padding-italic-space);
+  position: relative; // For pseudo-elements
   text-transform: uppercase;
   white-space: nowrap;
 
-  &.arrowed {
-    --arrow-space: 0.4rem;
-    --arrow-width: 1rem;
+  .-chevrons {
+    display: block;
+    padding: var(--btn-padding);
+    padding-right: var(--btn-padding-italic-space);
 
-    padding-right: calc(
-      var(--btn-padding) + var(--arrow-width) + var(--arrow-space)
-    );
-    position: relative; // For pseudo-element
+    &::after,
+    &::before {
+      --chevron-color: color-mix(in srgb, var(--yellow) 10%, transparent);
+      --chevron-line-width: 1rem;
+      --chevron-width: calc(var(--chevron-line-width) * 1.4142); // * √2
+      --chevrons-border: 1px;
 
-    &::after {
-      content: '';
-      height: 1rem;
-      right: var(--btn-padding);
-      mask: url(/images/arrow.svg) no-repeat center center / contain;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: var(--arrow-width);
-    }
-
-    &:is(:active, :focus, :hover) {
-      padding-right: calc(
-        var(--btn-padding) + var(--arrow-width) + (var(--arrow-space) * 1.5)
+      animation: chevron-scroll 1s linear infinite;
+      background-image: repeating-linear-gradient(
+          45deg,
+          transparent 0,
+          transparent calc(var(--chevron-line-width) / 2),
+          var(--chevron-color) calc(var(--chevron-line-width) / 2),
+          var(--chevron-color) var(--chevron-line-width)
+        ),
+        repeating-linear-gradient(
+          135deg,
+          transparent 0,
+          transparent calc(var(--chevron-line-width) / 2),
+          var(--chevron-color) calc(var(--chevron-line-width) / 2),
+          var(--chevron-color) var(--chevron-line-width)
+        );
+      background-position: 0 0, 0 100%;
+      background-repeat: repeat-x;
+      background-size: var(--chevron-width) 50%, var(--chevron-width) 50%;
+      border-radius: calc(
+        var(--btn-border-radius) - (var(--chevrons-border) * 2)
       );
+      box-shadow: inset 0 0 var(--blue-glow-size) var(--black-trans-subtle);
+      content: '';
+      height: calc(100% - (var(--chevrons-border) * 2));
+      mask: linear-gradient(to right, #ffffff 50%, #ffffff00);
+      pointer-events: none;
+      position: absolute;
+      top: var(--chevrons-border);
+      width: calc(50% - (var(--chevrons-border) * 2));
+      z-index: -1; // Appear beneath subsequent siblings
 
-      &::after {
-        background-color: var(--white);
-        transition: var(--link-duration-in);
+      @keyframes chevron-scroll {
+        to {
+          background-position: var(--chevron-width) 0, var(--chevron-width) 100%;
+        }
       }
     }
 
-    &:not(:active, :focus, :hover) {
-      &::after {
-        background-color: var(--dark-yellow);
-        transition: var(--link-duration-out);
+    &::after {
+      right: var(--chevrons-border);
+      transform: scaleX(-1);
+    }
+
+    &::before {
+      left: var(--chevrons-border);
+    }
+  }
+
+  &::after,
+  &::before {
+    --spin-animation: spin 3s linear infinite;
+
+    border-radius: inherit;
+    content: '';
+    mask-clip: content-box, border-box;
+    mask-composite: exclude;
+    mask-image: linear-gradient(black, black), linear-gradient(black, black);
+    pointer-events: none;
+    position: absolute;
+
+    @keyframes spin {
+      to {
+        --angle: 1turn;
       }
     }
   }
 
+  &::after {
+    --glow-color: color-mix(in srgb, var(--blue-glow-on) 75%, transparent);
+
+    animation: var(--spin-animation),
+      pulsate-bgcolor 1s linear infinite alternate-reverse both;
+    background-clip: padding-box;
+    background-image: conic-gradient(
+      from var(--angle),
+      transparent 20%,
+      var(--glow-color) 25%,
+      var(--glow-color) 26%,
+      transparent 30%,
+      transparent 45%,
+      var(--glow-color) 50%,
+      var(--glow-color) 51%,
+      transparent 55%,
+      transparent 90%,
+      var(--glow-color) 95%,
+      var(--glow-color) 96%,
+      transparent 100%
+    );
+    border: 40px solid transparent; // For `mask-clip`
+    filter: blur(10px);
+    inset: -40px;
+
+    @keyframes pulsate-bgcolor {
+      from {
+        background-color: color-mix(
+          in srgb,
+          var(--blue-glow-off) 30%,
+          transparent
+        );
+      }
+      to {
+        background-color: color-mix(
+          in srgb,
+          var(--blue-glow-off) 60%,
+          transparent
+        );
+      }
+    }
+  }
+
+  &::before {
+    --shine-color: color-mix(
+      in srgb,
+      var(--blue-glow-border-on) 65%,
+      var(--white)
+    );
+
+    animation: var(--spin-animation);
+    background-image: conic-gradient(
+      from var(--angle),
+      transparent 20%,
+      var(--shine-color) 25%,
+      var(--shine-color) 26%,
+      transparent 30%,
+      transparent 45%,
+      var(--shine-color) 50%,
+      var(--shine-color) 51%,
+      transparent 55%,
+      transparent 90%,
+      var(--shine-color) 95%,
+      var(--shine-color) 96%,
+      transparent 100%
+    );
+    background-origin: border-box;
+    border: 1px solid transparent; // For `mask-clip`
+    inset: -1px;
+  }
+
+  &:not(.important) {
+    box-shadow: 0 0 var(--blue-glow-size) 0 var(--blue-glow-off);
+  }
+
   &:is(:active, :focus, :hover) {
+    --common-transitions: background-color var(--glow-duration-in),
+      border-color calc(var(--glow-duration-in) / 2),
+      box-shadow var(--glow-duration-in), color var(--link-duration-in),
+      padding-right var(--link-duration-in), text-shadow var(--glow-duration-in);
+
     background-color: var(--darker-grey-trans);
-    border: 1px solid var(--blue-glow-border-on);
-    box-shadow: 0 0 var(--blue-glow-size) 0 var(--blue-glow-on);
-    color: color-mix(in srgb, var(--white) 10%, var(--yellow));
+    border-color: var(--blue-glow-border-on);
+    box-shadow: 0 0 var(--blue-glow-size) 0
+      color-mix(in srgb, var(--blue-glow-on) 50%, transparent);
+    color: color-mix(in srgb, var(--white) 13%, var(--yellow));
     outline: none;
     text-shadow: 0 0 0.08em color-mix(in srgb, var(--yellow) 50%, transparent),
       0 0 0.16em color-mix(in srgb, var(--yellow) 50%, transparent),
       0 0 0.32em color-mix(in srgb, var(--yellow) 50%, transparent),
       0 0 0.8em color-mix(in srgb, var(--yellow) 25%, transparent); // Relative size
-    transition: background-color var(--glow-duration-in),
-      border-color calc(var(--glow-duration-in) / 2),
-      box-shadow var(--glow-duration-in), color var(--link-duration-in),
-      padding-right var(--link-duration-in), text-shadow var(--glow-duration-in);
+    transition: var(--common-transitions), transform var(--link-duration-out);
+
+    .-chevrons::after,
+    .-chevrons::before {
+      opacity: 1;
+      transition: opacity var(--link-duration-in);
+    }
+
+    &::after,
+    &::before {
+      opacity: 1;
+      transition: opacity var(--glow-duration-in);
+    }
+
+    &:active {
+      transform: scale(0.98);
+      transition: var(--common-transitions),
+        transform calc(var(--link-duration-in) / 2);
+    }
   }
 
   &:not(:active, :focus, :hover) {
-    transition: background-color var(--glow-duration-out),
-      border-color calc(var(--glow-duration-out) / 2),
-      box-shadow var(--glow-duration-out), color var(--link-duration-out),
-      padding-right var(--link-duration-out),
-      text-shadow var(--glow-duration-out);
+    transition: background-color linear var(--glow-duration-out),
+      border-color linear calc(var(--glow-duration-out) / 2),
+      box-shadow linear var(--glow-duration-out),
+      color linear var(--link-duration-out),
+      padding-right linear var(--link-duration-out),
+      text-shadow linear var(--glow-duration-out),
+      transform var(--link-duration-out);
+
+    .-chevrons::after,
+    .-chevrons::before {
+      opacity: 0;
+      transition: opacity linear var(--glow-duration-out);
+    }
+
+    &:not(.important) {
+      &::after,
+      &::before {
+        opacity: 0;
+        transition: opacity var(--glow-duration-out);
+      }
+    }
   }
 
-  &:disabled,
-  &.disabled {
+  &:is(:disabled, .disabled) {
     cursor: not-allowed;
   }
 }

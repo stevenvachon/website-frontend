@@ -76,7 +76,7 @@ export default () => html`
       <p>
         <span class="sv hidden">Check out</span>
         <a
-          class="sv arrowed btn"
+          class="sv important btn"
           data-effect="blur-fade"
           data-effect-delay="0.75"
           data-effect-duration="1"
@@ -85,7 +85,7 @@ export default () => html`
           rel="me external noopener"
           target="_blank"
         >
-          my open source projects
+          <span class="-chevrons">my open-source projects</span>
         </a>
         <span class="sv hidden">on GitHub.</span>
       </p>

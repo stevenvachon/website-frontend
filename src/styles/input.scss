@@ -69,8 +69,7 @@
     }
   }
 
-  &:has(input:focus, textarea:focus),
-  &:hover {
+  &:is(:has(input:focus, textarea:focus), :hover) {
     input,
     textarea {
       transition: background-color var(--glow-duration-in),
@@ -117,8 +116,7 @@
     }
   }
 
-  &:has(input:disabled, textarea:disabled),
-  &.disabled {
+  &:has(input:disabled, textarea:disabled) {
     input,
     label,
     textarea {

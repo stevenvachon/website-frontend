@@ -12,6 +12,8 @@
   width: 100%; // Above line caused a horizontal scrollbar in Chrome v134
 
   &::before {
+    --line-width: 0.8rem;
+
     background-image: linear-gradient(
       to bottom,
       transparent 0%,
@@ -19,7 +21,13 @@
     );
     content: '';
     inset: 0;
-    mask: url(/images/footer.svg) repeat-x bottom / contain;
+    mask-image: repeating-linear-gradient(
+      135deg,
+      transparent 0,
+      transparent calc(var(--line-width) / 2),
+      white calc(var(--line-width) / 2),
+      white var(--line-width)
+    );
     position: absolute;
     z-index: -1; // Appear beneath subsequent siblings
   }

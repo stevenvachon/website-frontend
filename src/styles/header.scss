@@ -49,14 +49,15 @@
       &:is(:active, :focus, :hover) {
         &::after {
           opacity: 1;
-          transition: opacity var(--link-duration-in), visibility 0s;
+          transition: opacity var(--link-duration-in) var(--delay),
+            visibility 0s;
           visibility: visible;
         }
 
         &::before {
           filter: brightness(100%) saturate(100%);
-          transition: filter calc(var(--link-duration-in) * 2),
-            opacity var(--link-duration-in);
+          transition: filter calc(var(--link-duration-in) * 2) var(--delay),
+            opacity var(--link-duration-in) var(--delay);
         }
       }
 
@@ -148,45 +149,54 @@
       &::before {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
-        transition: border-radius var(--link-duration-in);
+        transition: border-radius var(--link-duration-in) var(--delay);
       }
 
       ul {
+        --duration: 0.3s;
+
         filter: blur(0px) saturate(1);
         // Elastic easing
-        transition: filter 0.3s, height 0.3s cubic-bezier(0.5, 1.8, 0.3, 0.8),
-          opacity 0.3s;
+        transition: filter var(--duration) var(--delay),
+          height var(--duration) cubic-bezier(0.5, 1.8, 0.3, 0.8) var(--delay),
+          opacity var(--duration) var(--delay);
 
         li {
-          transition: 1s;
+          transition: 1s var(--delay);
 
           &:nth-child(1) {
-            transition-delay: 0s;
+            transition-delay: calc(var(--delay) + 0s);
           }
           &:nth-child(2) {
-            transition-delay: 0.1s;
+            transition-delay: calc(var(--delay) + 0.1s);
           }
           &:nth-child(3) {
-            transition-delay: 0.2s;
+            transition-delay: calc(var(--delay) + 0.2s);
           }
         }
       }
     }
 
     &:not(:active, :focus, :focus-within, :hover) {
+      --delay2: calc(var(--delay) * 2);
+
       &::before {
-        transition: border-radius var(--link-duration-out);
+        transition: border-radius var(--link-duration-out) var(--delay2);
       }
 
       ul {
+        --duration: 0.75s;
+
         filter: blur(3px) saturate(0);
         height: 0;
         opacity: 0;
-        transition: 0.75s;
+        transition: filter var(--duration) var(--delay2),
+          height var(--duration) var(--delay2),
+          opacity var(--duration) var(--delay2);
 
         li {
           opacity: 0;
-          transition: opacity 0.75s;
+          transition: opacity var(--duration) var(--delay2);
         }
       }
     }
@@ -224,7 +234,7 @@
 
           &:is(:active, :focus, :hover) {
             background-color: var(--white);
-            transition: background-color var(--link-duration-in);
+            transition: background-color var(--link-duration-in) var(--delay);
           }
 
           &:not(:active, :focus, :hover) {
