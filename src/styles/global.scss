@@ -37,6 +37,39 @@ body {
   flex-direction: column;
   min-height: calc(100vh / var(--zoom));
   zoom: var(--zoom);
+
+  &::after {
+    animation: grain-randomize 0.65s linear infinite;
+    content: '';
+    filter: url(/images/grain.svg#noiseFilter) brightness(0.4) contrast(1.1);
+    height: max(100vh, 100vw);
+    inset: 0;
+    mix-blend-mode: overlay;
+    opacity: 0.9;
+    pointer-events: none;
+    position: fixed;
+    width: max(100vh, 100vw);
+    z-index: 100; // Appear over anything else anywhere
+
+    @keyframes grain-randomize {
+      0%,
+      24.9999% {
+        transform: rotate(0deg);
+      }
+      25%,
+      49.9999% {
+        transform: rotate(0.25turn) scaleX(100%);
+      }
+      50%,
+      74.9999% {
+        transform: rotate(0.5turn) scaleY(-100%);
+      }
+      75%,
+      100% {
+        transform: rotate(0.75turn) scaleX(-100%);
+      }
+    }
+  }
 }
 
 hr {

@@ -10,10 +10,11 @@
   flex-wrap: wrap; // To support `%pane` as a child
 
   .-blog--primary {
+    backdrop-filter: blur(var(--backdrop-blur-size-more));
     flex-grow: 1;
     font-style: normal;
-    margin-top: 2rem;
     min-width: 0; // For articles with code blocks; https://medium.com/@hbarcelos/flexbox-gotchas-reloaded-ce92a18343d4
+    padding-top: 2rem;
 
     @container style(--is-at-least-tablet-size: true) {
       width: calc(100% - var(--secondary-width));
@@ -21,6 +22,7 @@
   }
 
   .-blog--secondary {
+    backdrop-filter: blur(var(--backdrop-blur-size));
     box-sizing: border-box;
     padding-left: 1px; // For pseudo-element
     padding-top: var(--site-padding);
@@ -81,7 +83,7 @@
             text-shadow: none;
 
             a:any-link {
-              margin-left: 1rem;
+              padding-left: 1rem;
               text-decoration: underline;
 
               &::after,
@@ -149,7 +151,7 @@
                   border-radius: 50%;
                   height: 0.5rem;
                   left: var(--site-padding);
-                  margin: 0 0.5rem 0.14rem 0;
+                  margin-bottom: 0.14rem;
                   top: calc(var(--category-item-padding) + 0.3rem);
                   width: 0.5rem;
                 }

@@ -74,7 +74,6 @@ Deployment will be performed automatically when pushing/merging to the "main" br
 
 - Remove comments and TODOs.
 - Blog articles with their own directory are not auto-compiled in watch mode.
-- Try adding the pane grain back when it renders correctly with `position: sticky`.
 - Try adding a gradient to titles again when the pixelate filter supports them.
 - Add a--simple math or honeypot--captcha to the contact form or switch to JS submission to prevent any abuse from bots.
 - Use GitHub Packages instead of private repository for `website-projectile-pixels`.

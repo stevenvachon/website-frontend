@@ -4,28 +4,11 @@
   --reflection-size: 850px;
   --tint-size: calc(var(--reflection-size) * 1.75);
 
-  //backdrop-filter: blur(var(--backdrop-blur-size));
   pointer-events: none;
   position: sticky;
   top: 0;
   width: 100%; // If within flexbox -- which it often is
   z-index: -1; // Appear beneath subsequent siblings
-
-  //&::after,
-  &::before {
-    border-radius: 10px 10px 0 0;
-    content: '';
-    height: calc(var(--reflection-size) / 3 * 2);
-    position: absolute;
-    z-index: -1;
-    width: 100%;
-  }
-
-  // This did not render correctly
-  /*&::after {
-    filter: url(/images/grain.svg#noiseFilter) brightness(0.4) contrast(1.1);
-    mix-blend-mode: overlay;
-  }*/
 
   &::before {
     background-image: radial-gradient(
@@ -44,5 +27,11 @@
     background-repeat: no-repeat;
     background-size: var(--reflection-size) var(--reflection-size),
       var(--tint-size) var(--tint-size);
+    border-radius: 10px 10px 0 0;
+    content: '';
+    height: calc(var(--reflection-size) / 3 * 2);
+    position: absolute;
+    z-index: -1;
+    width: 100%;
   }
 }
