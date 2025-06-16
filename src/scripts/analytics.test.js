@@ -18,6 +18,61 @@ import analytics, {
   SESSION_TIMEOUT_EVENT,
 } from './analytics.js';
 
+beforeEach(() => {
+  vi.stubGlobal('fetch', vi.fn());
+  vi.stubGlobal('navigator', {
+    ...navigator,
+    sendBeacon: vi.fn(),
+  });
+});
+
+[
+  {
+    title: 'Crawlers',
+    // https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers
+    userAgent:
+      'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/W.X.Y.Z Safari/537.36',
+  },
+  {
+    title: 'Fetchers',
+    // https://developers.google.com/search/docs/crawling-indexing/google-user-triggered-fetchers
+    userAgent:
+      'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.118 Safari/537.36 (compatible; Google-Read-Aloud; +https://support.google.com/webmasters/answer/1061943)',
+  },
+].forEach(({ title, userAgent }) =>
+  describe(title, () => {
+    beforeAll(() => {
+      vi.stubGlobal('navigator', { ...navigator, userAgent });
+      vi.useFakeTimers();
+    });
+    afterAll(() => vi.useRealTimers());
+
+    it('does not store an id in sessionStorage', () => {
+      analytics();
+      expect(sessionStorage.getItem(SESSION_ID_KEY)).toBe(null);
+    });
+
+    [PAGE_LOAD_EVENT, SESSION_START_EVENT].forEach((event) =>
+      it(`does not send a "${event}" event`, () => {
+        analytics();
+        expect(vi.mocked(fetch)).not.toHaveBeenCalled();
+      })
+    );
+
+    it(`does not send a "${PAGE_UNLOAD_EVENT}" event`, () => {
+      analytics();
+      dispatchEvent(new Event('beforeunload'));
+      expect(vi.mocked(navigator.sendBeacon)).not.toHaveBeenCalled();
+    });
+
+    it(`does not send a "${SESSION_TIMEOUT_EVENT}" event`, () => {
+      analytics();
+      vi.advanceTimersByTime(INACTIVITY_TIMEOUT);
+      expect(vi.mocked(fetch)).not.toHaveBeenCalled();
+    });
+  })
+);
+
 describe('Humans', () => {
   const MESSAGE_METADATA = {
     headers: { 'Content-Type': 'application/json' },
@@ -33,11 +88,9 @@ describe('Humans', () => {
   beforeEach(() => {
     vi.spyOn(crypto, 'randomUUID').mockReturnValue(STUBBED_UUID);
     vi.spyOn(Date, 'now').mockReturnValue(STUBBED_TIMESTAMP);
-    vi.stubGlobal('fetch', vi.fn());
     vi.stubGlobal('location', new URL(STUBBED_LOCATION));
     vi.stubGlobal('navigator', {
       ...navigator,
-      sendBeacon: vi.fn(),
       userAgent: STUBBED_USERAGENT,
     });
     vi.stubGlobal('screen', {
@@ -48,7 +101,10 @@ describe('Humans', () => {
   });
 
   afterEach(() => sessionStorage.removeItem(SESSION_ID_KEY));
-  afterAll(() => vi.unstubAllGlobals());
+  afterAll(() => {
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+  });
 
   describe('New session', () => {
     const ORIGINAL_REFERRER = document.referrer;
@@ -119,7 +175,7 @@ describe('Humans', () => {
       });
     });
 
-    it(`sends a "${PAGE_UNLOAD_EVENT}" when leaving the page`, async () => {
+    it(`sends a "${PAGE_UNLOAD_EVENT}" event when leaving the page`, async () => {
       analytics();
       dispatchEvent(new Event('beforeunload'));
       expect(vi.mocked(navigator.sendBeacon)).toHaveBeenCalled();
@@ -140,11 +196,10 @@ describe('Humans', () => {
   describe('Existing session', () => {
     const STUBBED_UUID_UNUSED = '043f18e8-9cf6-4440-81b1-cd13e4902e28';
 
-    beforeAll(() =>
-      vi.spyOn(crypto, 'randomUUID').mockReturnValue(STUBBED_UUID_UNUSED)
-    );
-    beforeEach(() => sessionStorage.setItem(SESSION_ID_KEY, STUBBED_UUID));
-    afterAll(() => vi.mocked(crypto.randomUUID).mockRestore()); // Revert to previous spy
+    beforeEach(() => {
+      sessionStorage.setItem(SESSION_ID_KEY, STUBBED_UUID);
+      vi.spyOn(crypto, 'randomUUID').mockReturnValue(STUBBED_UUID_UNUSED);
+    });
 
     it('reuses the stored id', () => {
       analytics();
@@ -195,12 +250,9 @@ describe('Humans', () => {
       },
     ];
 
-    beforeEach(() => {
-      vi.mocked(Date.now).mockRestore(); // Revert to native implementation
-      vi.useFakeTimers();
-    });
-
-    afterEach(() => vi.useRealTimers());
+    beforeAll(() => vi.useFakeTimers());
+    beforeEach(() => vi.mocked(Date.now).mockRestore());
+    afterAll(() => vi.useRealTimers());
 
     it(`sends a "${SESSION_TIMEOUT_EVENT}" event after prolonged user inactivity`, () => {
       analytics();

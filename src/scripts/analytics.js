@@ -1,3 +1,4 @@
+import { Bots } from 'ua-parser-js/extensions';
 import { UAParser } from 'ua-parser-js';
 
 // Exported for tests
@@ -74,7 +75,9 @@ const updateActivity = () => {
 
 export default () => {
   if (
-    ['crawler', 'fetcher'].includes(UAParser(navigator.userAgent).browser.type)
+    ['crawler', 'fetcher'].includes(
+      UAParser(navigator.userAgent, Bots).browser.type
+    )
   ) {
     return;
   }
