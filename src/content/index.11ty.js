@@ -4,7 +4,7 @@ export const data = {
   description: 'An expert of 20+ years in web-based software development.',
   layout: 'main.11ty.js',
   tags: ['homepage'],
-  title: 'Steven Vachon: Frontend/Cloud Engineer',
+  title: 'Steven Vachon: Frontend & Cloud Engineer',
 };
 
 export default () => html`
