@@ -247,7 +247,8 @@
             0 0 var(--icon-glow-size)
               color-mix(in srgb, var(--white) 25%, transparent)
           );
-          //transition: filter var(--glow-duration-in);
+          //transition: filter var(--glow-duration-in) var(--delay);
+          transition: filter 0s var(--delay);
         }
 
         /*&:not(:active, :focus, :hover) {
