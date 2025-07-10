@@ -1,7 +1,7 @@
 import { beforeAll, beforeEach, expect, test as it, vi } from 'vitest';
 import analytics from './analytics.js';
 import effects from './effects.js';
-import textEffects from './textEffects.js';
+import textEffects from './textEffects/index.js';
 
 vi.mock('./analytics.js', async () => ({
   default: vi
@@ -15,10 +15,12 @@ vi.mock('./effects.js', async () => ({
     .mockImplementation((await vi.importActual('./effects.js')).default),
 }));
 
-vi.mock('./textEffects.js', async () => ({
+vi.mock('./textEffects/index.js', async () => ({
   default: vi
     .fn()
-    .mockImplementation((await vi.importActual('./textEffects.js')).default),
+    .mockImplementation(
+      (await vi.importActual('./textEffects/index.js')).default
+    ),
 }));
 
 beforeAll(() => vi.stubGlobal('fetch', vi.fn()));

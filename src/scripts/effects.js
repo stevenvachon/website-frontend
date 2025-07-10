@@ -1,8 +1,5 @@
-import {
-  numberError,
-  stringError,
-  watchForReadyElements,
-} from './util/index.js';
+import { numberError, stringError } from './logging/index.js';
+import { watchForReadyElements } from './util/index.js';
 
 export const EFFECT_ATTR = 'data-effect';
 export const EFFECT_DELAY_ATTR = 'data-effect-delay';
@@ -11,6 +8,12 @@ export const EFFECT_DURATION_ATTR = 'data-effect-duration';
 export const BLUR_FADE_EFFECT = 'blur-fade';
 export const FADE_EFFECT = 'fade';
 
+/**
+ * @param {Object} config
+ * @param {number} config.delay Seconds before starting
+ * @param {number} config.duration In seconds (excluding the delay)
+ * @param {number} config.target
+ */
 const blurFadeEffect = async ({ delay, duration, target }) => {
   target.style.filter = 'blur(10px) saturate(0%)';
   target.style.opacity = 0;
@@ -31,6 +34,12 @@ const blurFadeEffect = async ({ delay, duration, target }) => {
   target.style.opacity = '';
 };
 
+/**
+ * @param {Object} config
+ * @param {number} config.delay Seconds before starting
+ * @param {number} config.duration In seconds (excluding the delay)
+ * @param {number} config.target
+ */
 const fadeEffect = async ({ delay, duration, target }) => {
   target.style.opacity = 0;
 

@@ -2,7 +2,7 @@
   "private": true,
   "name": "website-frontend",
   "description": "My website's frontend.",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "license": "UNLICENSED",
   "author": "Steven Vachon <contact@svachon.com> (https://svachon.com)",
   "repository": "github:stevenvachon/website-frontend",
@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "splitting": "^1.1.0",
+    "tween-functions": "^1.2.0",
     "typed.js": "^2.1.0",
     "ua-parser-js": "^2.0.3",
     "website-projectile-pixels": "github:stevenvachon/website-projectile-pixels#v1.0.1"

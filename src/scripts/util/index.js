@@ -7,7 +7,4 @@ export {
 } from './formatBlogCategoryTag.js';
 export { default as formatBlogCategoryTagURL } from './formatBlogCategoryTagURL.js';
 export { default as html } from './html.js';
-export { default as ignoredWarning } from './ignoredWarning.js';
-export { default as numberError } from './numberError.js';
-export { default as stringError } from './stringError.js';
 export { default as watchForReadyElements } from './watchForReadyElements.js';

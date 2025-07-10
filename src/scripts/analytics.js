@@ -14,6 +14,10 @@ let sessionTimeout;
 
 const isActiveSession = () => sessionStorage.getItem(SESSION_ID_KEY) !== null;
 
+/**
+ * @param {string} eventName
+ * @param {{}} data
+ */
 const send = (eventName, data) =>
   Promise.try(() => {
     const type = 'application/json';
