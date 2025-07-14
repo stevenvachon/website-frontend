@@ -8,8 +8,7 @@
   height: 3rem;
   justify-content: center;
   position: relative; // For pseudo-element
-  //width: calc(100vw / var(--zoom));
-  width: 100%; // Above line caused a horizontal scrollbar in Chrome v134
+  width: calc(100vw / var(--zoom));
 
   &::before {
     --line-width: 0.8rem;

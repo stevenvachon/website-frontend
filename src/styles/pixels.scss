@@ -5,8 +5,7 @@
   overflow-x: clip;
   position: sticky;
   top: 0;
-  //width: calc(100vw / var(--zoom));
-  width: 100%; // Above line caused a horizontal scrollbar in Chrome v134
+  width: calc(100vw / var(--zoom));
   z-index: -1; // Appear beneath subsequent siblings
 
   projectile-pixels {
@@ -20,13 +19,18 @@
         )
         / 2
       )
-      + 330px
+      +
+      min(
+        33.33%,
+        var(--max-site-width) * 0.33
+      )
     );
     margin-top: calc(0 - var(--site-padding));
     position: absolute;
     width: 763px;
 
     /*&:not(:defined) {
+      background: url();
       display: block;
     }*/
   }

@@ -28,7 +28,7 @@ export default ({ tags }) => html`
       itemprop="mainContentOfPage"
     >
       ${tags?.includes('contact-page-sent')
-        ? html`<h1>Getting in contact</h1>`
+        ? html`<h1>Getting in touch</h1>`
         : html`<h1
             data-text-effect="pixelate-fade"
             data-text-effect-by="chars"
